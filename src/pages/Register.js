@@ -162,6 +162,7 @@ const Register = () => {
                 <form onSubmit={onSubmitHandler}>
                     <h1>Create your account</h1>
                     <div className='form-control-two'>
+                        
                         <div className='form-control'>
                             <label>First name</label>
                             <input type='text' onChange={(e) => setFirstname({ ...firstName, value: e.target.value })} value={firstName.value}/>
