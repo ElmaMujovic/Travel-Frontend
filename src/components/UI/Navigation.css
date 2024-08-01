@@ -1,0 +1,71 @@
+.navigation {
+    position: fixed;
+    background-color: rgb(199, 209, 245);
+    width: 100% !important;
+    overflow: hidden !important;
+}
+
+ul {
+    display: flex;
+    align-items: flex-start;
+    list-style-type: none;
+}
+
+ul a {
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+}
+
+ul button
+{
+    margin-left: 0px;
+}
+.footer
+{
+    
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    color: white;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+
+}
+
+.footer p
+{
+    font-size: 0.7rem;
+}
+
+.second-part
+{
+    margin-left: auto;
+    color: white;
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.comment-card
+{
+    border-radius: 10px;
+    border: 1px solid black;
+    width: 20rem;
+    height: 8rem;
+    background-color: aliceblue;
+    margin-left: 13rem;
+    top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.comment-card p
+{
+    text-align: left;
+    margin-left: 5px;
+}
+
+.text-com
+{
+    text-align: left;
+    margin-left: 5px;
+}

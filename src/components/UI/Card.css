@@ -1,0 +1,99 @@
+.car-preview .car
+{
+    width:230px;
+    height: 150px;
+}
+
+.car-preview .car img
+{
+    width: 220px;
+    height: 150px;
+    margin-left: 5px;
+}
+.line
+{
+
+    width: 225px;
+    height: 2.5px;
+    background-color: rgb(199, 209, 245);
+    text-align: center;
+    margin-left: 6px;
+    border-radius: 5px;
+}
+
+.price
+{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+
+.car-preview
+{
+    text-align: center;
+    border-bottom: 1px solid #fafafa;
+    width: 240px;
+    height: 280px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,1);
+    border-radius: 3px;
+    margin: 8px;
+
+}
+.car-preview:hover
+{
+    box-shadow: 2px 4px 6px rgba(0,0,0,1);
+}
+
+.car-preview p
+{
+     color: black;
+     font-size: 20px;
+     font-weight: bolder;
+}
+
+.price p
+{
+    font-size: 17px;
+    color: black;
+    margin-top: 0;
+    padding-top: 10px;
+}
+.price p:nth-child(1)
+{
+    font-size:17px;
+    padding-top: 15px;
+}
+.price p:nth-child(2)
+{
+    font-size: 25px;
+}
+
+.car-list
+{
+  max-width: 1000px;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-top: 4rem;
+}
+
+.lcard
+{
+    text-align: center;
+    width: 350px;
+    padding-top: 1rem;
+}
+
+
+.lcard img
+{
+    width: 2.5rem;
+    height: 2.5rem;
+}

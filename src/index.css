@@ -1,0 +1,975 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.page {
+  min-height: 70vh;
+}
+
+.home-page {
+  padding-top: 3rem;
+}
+.profile-page {
+  padding-top: 3rem;
+  min-height: 785px;
+}
+
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(247, 251, 255);
+  height:785px ;
+}
+.details-page
+{
+  padding-top: 3rem;
+  min-height: 785px;
+}
+
+.contact-page
+{
+  padding-top: 3rem;
+  min-height: 785px;
+}
+
+.fleet-page
+{
+  padding-top: 3rem;
+  min-height: 785px;
+}
+
+.verify-page
+{
+  padding-top: 3rem;
+  text-align: center;
+  align-items: center;
+}
+
+.verify-page .page
+{
+  
+  text-align: center;
+  align-items: center;
+  margin-top: 6.5rem;
+
+}
+
+.verify-page .inputs :nth-child(2)
+{
+  margin-left: 1rem;
+}
+.login-card {
+  width: 50rem;
+  height: 25rem;
+  color: black;
+  padding: 1rem;
+  background-color: rgb(199, 209, 245);
+  border-radius: 2rem;
+  display: flex;
+}
+.register-card {
+  width: 25rem;
+  height: 25rem;
+  color: black;
+  padding: 0.5rem;
+  background-color: rgb(199, 209, 245);
+  border-radius: 2rem;
+}
+
+.register-card .text{
+ 
+  margin: auto;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+
+.login-card .form-control {
+  display: flex;
+  flex-direction:column;
+  margin-bottom: 0.5rem;
+  
+}
+
+.login-card .form-control input {
+  padding: 0.5rem;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  
+}
+
+.login-card .form-control input[type='submit'] {
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+form
+{
+  width: 50%;
+  margin: auto;
+}
+
+.login-card .image
+{
+  margin: auto;
+  width: 20rem;
+  height: 15rem;
+}
+
+.header h2, h1, p
+{
+  text-align: center;
+}
+.form-control p
+{
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.slick-home
+{
+  background-color: aliceblue;
+  height: 600px;
+  margin-top: 1rem;
+  display: flex;
+}
+
+.slick-home img
+{
+  width:900px;
+  height: 500px;
+  margin-top: 1rem;
+  margin: auto;
+}
+.slick-home .text
+{
+  margin: auto;
+  margin-left: 10rem;
+}
+
+.slick-home .text h1
+{
+  font-size: 50px;
+}
+
+.slick-home .card
+{
+  height: 20rem;
+  width: 20rem;
+  background-color: rgba(128, 128, 128, 0.058);
+  margin: auto;
+  border-radius: 2rem;
+  
+}
+
+.aboutus .first
+{
+  display: flex;
+  max-width: 1000px;
+  height: auto;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 5px;
+  margin: auto;
+}
+
+.first img
+{
+  width: 40%;
+  height: auto;
+}
+.first .paragraf1
+{
+  margin-top: 40px;
+  margin-left: 20px;
+  max-width: 500px;
+}
+
+.aboutus .second
+{
+  max-width: 1000px;
+  margin-top: 50px;
+  text-align: center;
+  margin:5px;
+  margin: auto;
+}
+
+.aboutus .second p
+{
+  margin-top: 20px;
+}
+
+.chooseus
+{
+  display: flex;
+  max-width: 1000px;
+  height: auto;
+  margin-top: 50px;
+  padding-bottom: 3rem;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+}
+.chooseus img
+{
+  width: 45%;
+  height: 300px;
+}
+
+.chooseus .paragraf2
+{
+  max-width: 500px;
+  width: 500px;
+}
+
+.content
+{
+  max-width: 1000px;
+  margin: 0px auto;
+  padding:10px;
+}
+
+.aboutus
+{padding-top: 3rem;}
+.main
+{
+  display: flex;
+  width: 1000px;
+  height: 500px;
+  box-shadow: 1px 2px 3px #333;
+}
+
+.pozadina
+{
+  position: relative;
+  text-align: center;
+  max-width: 500px;
+
+}
+.main img
+{
+  width: 500px;
+  height: 500px;
+  padding:0;
+  margin: 0;
+}
+
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+  margin-left: 50px;
+  margin-top: 5px;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  height: 40px;
+  width: 80px;
+  border-radius: 3px;
+  background-color: rgb(199, 209, 245);
+  font: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: black;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 660px;
+  left: 50px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropbtn
+{
+  color: rgb(199, 209, 245);
+}
+/* Mega Menu header, if needed */
+.dropdown-content .header {
+  background:rgb(199, 209, 245);
+  padding: 16px;
+  color: rgb(199, 209, 245);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 200px;
+  padding: 10px;
+  background-color: #ccc;
+  height: 250px;
+  display: block;
+}
+
+
+
+/* Add a background color on hover */
+.column a:hover {
+  background-color: #ddd;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column button
+{
+  border: none;
+  background-color: transparent;
+  float: none;
+  color: black;
+  display: block;
+  margin: auto;
+  margin-right: 155px;
+  padding: 10px;
+}
+
+.btnX
+{
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  height: 40px;
+  border-radius: 3px;
+  background-color: black;
+  font: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  margin-left: 2px;
+}
+
+.column .btnApply
+{
+ background-color: black;
+ border-radius: 2px;
+  height: 20px;
+   color:white;
+   text-align: center;
+  float: none;
+  padding: 2px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  height: 30px;
+  width: 50px;
+}
+
+.contactform
+{
+  display: flex;
+  max-width: 1000px;
+  height: auto;
+  margin: auto;
+  box-shadow: 1px 2px 3px #333;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 10rem;
+ 
+}
+.contactform img
+{
+  width: 200px;
+  height: 250px;
+  margin-top: 40px;
+}
+
+.contactimg
+{
+  max-width: 400px;
+  height: 33rem;
+  position: relative;
+  text-align: center;
+  background-color: rgb(199, 209, 245);
+}
+.contactimg p
+
+{
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+ .formC
+{
+ 
+  margin-right: auto;
+  max-width: 550px;
+}
+.formC form
+{
+  max-width: 400px;
+}
+
+
+.formC input
+{
+  border-radius: 3px;
+  height: 30px;
+  margin: 5px;
+  width: 35rem;
+}
+.formC textarea
+{
+  border-radius: 3px;
+  width: 35rem;
+  border: 2px solid #333;
+  margin-left: 3px;
+}
+.cname
+{
+    width: 1000px;
+    height: 50px;
+    color: orangered;
+    margin: 0 auto;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    padding: 2px;
+    align-items: center;
+    
+}
+
+.cname h1
+{
+    margin-left: 10px;
+}
+.links a
+{
+    text-decoration: none;
+    margin-left: 15px;
+    padding: 6px;
+    color: black;
+    font-size: 18px;
+}
+.create-car {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-car form {
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+  transition: 0.3s;
+  width: 50rem;
+  margin-top: 9rem;
+}
+
+.create-car form:hover {
+  transform: scale(1.05);
+}
+
+.form-control-two {
+  display: flex;
+}
+
+.form-control-two > div {
+  flex: 1;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem;
+  margin-top: 0.5rem;
+}
+.form-control-button {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem;
+  margin-top: 0.1rem;
+  font-size: 12px;
+}
+
+
+label {
+  margin-bottom: 0.25rem;
+}
+
+input,
+select {
+  border-radius: 6px;
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+.blog-details h2
+{
+  font-size: 20px;
+  color: #ff4500;
+  margin-bottom: 10px;
+}
+
+.blog-details div
+{
+  margin: 20px 0;
+}
+.blog-details button
+{
+  background-color: #ff4500;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: [pointer];
+}
+
+.prikaz
+{
+  display: flex;
+  max-width: 1500px;
+  padding-top: 2rem;
+}
+
+.prikaz img
+{
+  width: 50rem;
+  margin-left: 20px;
+  visibility: visible;
+}
+
+.prikaz form
+{
+  margin-top: 50px;
+  margin-left: 30px;
+  width: 400px;
+  margin: auto;
+  margin-left: 10rem;
+}
+
+.prikaz form input
+{
+  margin: 10px 5px 40px 80px;
+ 
+}
+
+.myprofile
+{
+    color: orangered;
+    text-align: center;
+    align-items: center;
+    
+}
+
+.myinfo 
+{
+    max-width: 400px;
+    margin-top: 5%;
+    margin-left: 10%;
+
+}
+
+.myinfo {
+    font-size: 12px;
+}
+
+.myinfo label
+{
+    font-size: 20px;
+}
+.profileconfig
+{
+    display: flex;
+    max-width: 600px;
+    height: 300px;
+    margin: auto;
+    box-shadow: 1px 2px 3px rgb(255, 210, 193);
+    background-color: rgb(243, 243, 243)
+}
+
+.profileimg
+{
+    background-color: rgb(255, 210, 193);
+    width: 200px;
+    height: 300px;
+}
+
+.profileimg img
+{
+    width: 100px;
+    height: 100px;
+    margin-top: 45%;
+    margin-left: 25%;
+    border-radius: 30px;
+}
+
+.profileimg p
+{
+    text-align: center;
+    font-size: small;
+}
+
+.profileimg a
+{
+    
+    text-decoration: none;
+    color: white;
+}
+
+.slick-arrow {
+  display: none !important;
+}
+
+.val
+{
+  font-size: 12px;
+  color: red;
+}
+
+.car-details
+{
+  width:600px;
+  text-align: center;
+  
+}
+
+.car-details .btn
+{
+  width:80px;
+   background-color:rgb(199, 209, 245);
+   border-radius: 1rem
+}
+
+
+.feature td
+{
+
+	border-bottom : dashed 1px gray;
+}
+
+
+.feature img
+{
+    width: 1rem;
+    height: 1rem;
+}
+
+.include
+{
+  width: 800px;
+}
+
+.addinf
+{
+  width: 800px;
+  margin-left: 600px;
+  margin-bottom: 1.5rem;
+}
+
+.infocard
+{
+  
+  width: 100%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  background-color:  rgb(199, 209, 245);
+  margin-top: 1rem;
+}
+
+.info
+{
+  
+  background-color:  rgb(199, 209, 245);
+}
+
+.nameCar
+{
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  background-color: rgb(241, 240, 240);
+  
+  vertical-align: middle;
+  
+}
+
+.nameCar p
+{
+  padding-top: 2rem;
+  font-size: 25px;
+  padding-bottom: 1rem;
+}
+
+ .profile-page .user-info
+{
+  width: 80%;
+  background-color: lightgrey;
+  box-shadow: 10px 5px 5px rgb(199, 209, 245);
+  margin: auto;
+  height: 550px;
+  margin-top: 5rem;
+  display: flex;
+}
+
+.user-image
+{
+  width: 30%;
+  background: whitesmoke;
+  text-align: center;
+}
+
+.user-details
+{
+  width: 70%;
+  background-color: lightgrey;
+
+}
+
+.user-image img
+{
+  width: 15rem;
+  height: 15rem;
+  border-radius: 10rem;
+  margin-top: 3rem;
+  
+}
+.user-details p
+{
+  text-align: left;
+  font-size: 20px;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.user-details a
+{
+  margin-left: 2rem;
+}
+
+.user-details form
+{
+  width: 100%;
+  background-color: lightgrey;
+  text-align: center;
+  margin-top: 2rem;
+  
+}
+
+.add-comment
+{
+  height: auto;
+  background-color: rgb(199, 209, 245);
+  padding-top: 1;
+
+}
+.add-comment .com {
+  max-height: 300px;
+  background-color: rgb(199, 209, 245);
+  padding-top: 1;
+  overflow-y: scroll;
+  
+}
+.add-comment ::-webkit-scrollbar
+{
+  display: none;
+}
+.add-comment h2, .comment, .add-comm
+{
+  margin-left: 13rem;
+  margin-bottom: 1rem;
+
+}
+.add-comment .del
+{
+  display: flex;
+}
+
+.add-comment .del button
+{
+  height: 20px;
+  width: 80px;
+  vertical-align:baseline;
+  border-radius: 3px;
+  border: 0px solid;
+  margin-top: 50px;
+  margin-left: 5px;
+
+}
+.add-comment h2
+{
+  padding-top: 1rem;
+}
+.text-com
+{
+  text-align: center;
+}
+
+.heart{
+  font-size: 35px;
+  color:rgb(182, 173, 173);
+  margin-top: 15px;
+   width: 70px;
+   outline: none;
+   text-transform: uppercase;
+   cursor: pointer;
+   font-weight: bold;
+      
+  
+}
+
+.heartactive
+{
+  color:rgb(192, 39, 39);
+  font-size: 35px;
+  margin-top: 15px;
+  width: 70px;
+  outline: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.heart :hover
+{
+  color: rgb(192, 39, 39);
+ 
+}
+
+.favCards
+{
+  width: 150px;
+  height: 150px;
+}
+
+.icon
+{
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 100;
+  color:rgb(182, 173, 173);
+}
+
+.icon-empty
+{
+  color:rgb(192, 39, 39);
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.hearts h2 {
+  margin-right: 1rem;
+}
+
+.hearts button {
+  height: 50px;
+  width: 50px;
+  margin: auto 0;
+  margin-right: 0.5rem;
+  background-color: transparent;
+  border-radius: 6px;
+  border-color: #ccc;
+  outline: none;
+}
+
+.hearts button svg {
+  height: 30px;
+  width: 30px;
+}
+
+.removeFavCar button
+{
+  border-radius: 3px;
+  background-color:  c;
+  margin-bottom: 5rem;
+}
+
+.removeFavCar
+{
+  width: 250px;
+  height: 400px;
+  text-align: center;
+}
+
+.form-reserve
+{
+  margin: auto;
+  display: grid;
+  
+}
+.form-reserve div, button
+{
+  margin-top: 0.5rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.form-reserve .reserve 
+{
+  display: flex;
+  margin: auto;
+
+}
+.reserve input, label
+{
+  margin-top: 0.5rem;
+}
+
+
+.pwd-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.1rem;
+  
+}
+.pwd-container img {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  right: 8px;
+  top: 6px;
+}
+
+.create-car h2 
+{
+  text-align: center;
+}
