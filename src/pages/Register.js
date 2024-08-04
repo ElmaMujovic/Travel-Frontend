@@ -19,6 +19,11 @@ const Register = () => {
     const   [isRevealPwd, setIsRevealPwd] = useState(false);
     const [error, setError] = useState("");
     const[path, setPath] = useState(null);
+    const [role, setRole] = useState("user");
+    const handleRoleChange = (e) => {
+        setRole(e.target.value);
+       
+    };
     const navigate = useNavigate();
     const sleep = ms => new Promise(
         resolve => setTimeout(resolve, ms)
@@ -221,6 +226,16 @@ const Register = () => {
                         <input type='text' onChange={(e) => setCity({ ...city, value: e.target.value })}  value={city.value}/>
                         {!city.isValid && hasError && <div className='val'>City is invalid</div>}
                     </div>
+       
+
+<div className='form-control'>
+            <label>Role</label>
+            <select onChange={handleRoleChange} value={role}>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+                <option value="moderator">Moderator</option>
+            </select>
+        </div>
 
                     {error && <div style={{ fontWeight: "bold", textAlign: "center" }}>{error}</div>}
                     <div className='form-control'>

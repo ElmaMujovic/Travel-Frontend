@@ -1,53 +1,36 @@
 import React from "react";
 import Slider from "react-slick";
 import { Component } from "react";
-import img from './car3.png'
-import img2 from './car4.png'
-import img3 from './car2.png'
+import video1 from './izmenadrugi.mp4';
+import video2 from './izmenaprvi.mp4';
+import video3 from './izmenatreci.mp4';
+
 export default class SimpleSlider extends Component {
-  
- 
-
     render() {
-      
-    
-      const settings = {
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-       
-      };
+        const settings = {
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 5000, // Podešavanje brzine automatskog prelaza na 5 sekundi
+        };
 
-  
-      
-      return (
-        <div className='home-page'>
-          <Slider {...settings}>
-            <div >
-             <div className="home slick-home">
-                <div className="text"><h1>Premium <br /> Car Rental <br /> in New York</h1> Don't deny yourself the pleasure of <br /> driving the best premium cars from <br /> around the world here and now</div>
-                <img src={img} alt="" />
-             </div>
+        return (
+            <div className='home-page'>
+                <Slider {...settings}>
+                    <div className="home slick-home">
+                        <video src={video1} autoPlay loop muted style={{ width: "100%", height: "100vh", objectFit: "cover" }} />
+                    </div>
+                    <div className="home slick-home">
+                        <video src={video2} autoPlay loop muted style={{ width: "100%", height: "100vh", objectFit: "cover" }} />
+                    </div>
+                    <div className="home slick-home">
+                        <video src={video3} autoPlay loop muted style={{ width: "100%", height: "100vh", objectFit: "cover" }} />
+                    </div>
+                </Slider>
             </div>
-            <div>
-            <div className="home slick-home">
-                <div className="text"><h1>Reserve a Car Near You <br /> and Drive in Minutes!</h1><p>Car rent services for  <br /> various terrain with guaranteed quality</p> </div>
-                <img src={img2}  style={{width:"600px"}} alt="" />
-             </div>
-            </div>
-            <div>
-            <div className="home slick-home">
-            <img src={img3}  style={{width:"700px", marginLeft:"0px"}} alt="" />
-            <div className="text" style={{marginRight:"3rem"}}><h1>&#10003; Deals for every budget</h1><h1>&#10003; Best price guaranteed</h1><h1>&#10003; Support 24/7</h1></div>
-             </div>
-            </div>
-           
-          </Slider>
-        </div>
-      );
+        );
     }
-  }
-
+}
