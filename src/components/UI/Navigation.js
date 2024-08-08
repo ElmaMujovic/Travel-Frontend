@@ -29,6 +29,7 @@ const Navigation = () => {
                 <Link to='/fleet'>Fleet</Link>
                 <Link to='/contact'>Contact</Link>
                 {user && user.role === 'User'? <Link to="/create-car">Create car</Link>:""}
+                {user && user.role === 'User'? <Link to="/create-package">Create Package</Link>:""}
                 {user &&  <Link to='/profile'>My Profile</Link>}
 
                 <li className='second-part'><b>TravelApp</b></li>

@@ -23,6 +23,7 @@ import ResetPassword from './pages/ResetPassword';
 import ForgotPassword from './pages/ForgotPassword';
 import ChangeInfo from './pages/ChangeInfo';
 import Error from './pages/Error';
+import CreatePackage from './pages/CreatePackage';
 /* eslint-disable */
 
 function App() {
@@ -79,6 +80,8 @@ function App() {
           <Route path='/reset-password/:token' element={<ResetPassword/>}/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/change-info' element={<ChangeInfo/>}/>
+          <Route path='/create-package' element={<CreatePackage/>}/>
+
           <Route path="/*" element={<Error/>} />
         </Routes>
       </Router>

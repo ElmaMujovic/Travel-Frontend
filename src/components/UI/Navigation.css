@@ -1,9 +1,11 @@
 .navigation {
-    position: fixed;
+    position: relative;
     background-color: rgb(199, 209, 245);
     width: 100% !important;
     overflow: hidden !important;
 }
+/* Primer za povećanje z-index za navbar */
+
 
 ul {
     display: flex;
