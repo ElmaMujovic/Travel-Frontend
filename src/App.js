@@ -24,6 +24,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ChangeInfo from './pages/ChangeInfo';
 import Error from './pages/Error';
 import CreatePackage from './pages/CreatePackage';
+import DestinacijePaketa from './pages/DestinacijePaketa';
 /* eslint-disable */
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/change-info' element={<ChangeInfo/>}/>
           <Route path='/create-package' element={<CreatePackage/>}/>
+          <Route path='/create-package-destinacija' element={<DestinacijePaketa/>}/>
 
           <Route path="/*" element={<Error/>} />
         </Routes>

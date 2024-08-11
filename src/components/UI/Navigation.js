@@ -30,6 +30,7 @@ const Navigation = () => {
                 <Link to='/contact'>Contact</Link>
                 {user && user.role === 'User'? <Link to="/create-car">Create car</Link>:""}
                 {user && user.role === 'User'? <Link to="/create-package">Create Package</Link>:""}
+                {user && user.role === 'User'? <Link to="/create-package-destinacija">Destinacije paketa</Link>:""}
                 {user &&  <Link to='/profile'>My Profile</Link>}
 
                 <li className='second-part'><b>TravelApp</b></li>
