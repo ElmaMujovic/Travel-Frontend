@@ -26,7 +26,7 @@ import Error from './pages/Error';
 import CreatePackage from './pages/CreatePackage';
 import DestinacijePaketa from './pages/DestinacijePaketa';
 import DestinacijeList from './pages/DestinacijeList'; // Dodaj ovu liniju
-
+import EditPackage from './pages/EditPackage';
 
 
 
@@ -89,6 +89,7 @@ function App() {
           <Route path='/create-package' element={<CreatePackage/>}/>
           <Route path='/create-package-destinacija' element={<DestinacijePaketa/>}/>
           <Route path="/destinacije-paketa/:paketId" element={<DestinacijeList />} />
+          <Route path="/uredi-paket/:id" element={<EditPackage />} />
 
           
 

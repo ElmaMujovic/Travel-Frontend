@@ -9,15 +9,25 @@ export const Home = () => {
   const [packageCreated, setPackageCreated] = useState(false);
 
   useEffect(() => {
-    // Fetch existing packages from the API on component mount
     axios.get('https://localhost:7016/api/Paket')
       .then(res => setDestinations(res.data))
       .catch(err => console.error("Error fetching packages:", err));
   }, [packageCreated]);
 
   const handlePackageCreated = (newPackage) => {
-    console.log("New package added:", newPackage); // Log the newly created package
-    setPackageCreated(prev => !prev); // Trigger re-fetch
+    console.log("New package added:", newPackage);
+    setPackageCreated(prev => !prev);
+  };
+
+  const handleDelete = (packageId) => {
+    if (window.confirm("Da li ste sigurni da želite da obrišete ovaj paket?")) {
+      axios.delete(`https://localhost:7016/api/Paket/${packageId}`)
+        .then(() => {
+          setDestinations(destinations.filter(destination => destination.id !== packageId));
+          alert("Paket je uspešno obrisan.");
+        })
+        .catch(err => console.error("Error deleting package:", err));
+    }
   };
 
   return (
@@ -35,11 +45,15 @@ export const Home = () => {
             <li key={index}>
               <h3>{destination.naziv}</h3>
               <p>{destination.opis}</p>
-              <p>Tag: <Link to={`/destinacije-paketa/${destination.id}`}>{destination.tag}</Link></p> {/* Dodaj Link */}
+              <p>Tag: <Link to={`/destinacije-paketa/${destination.id}`}>{destination.tag}</Link></p>
               <img
                 src={`https://localhost:7016/images/${destination.imagePath}`}
                 style={{ height: "300px", width: "300px" }}
               />
+              <button onClick={() => handleDelete(destination.id)}>Obriši</button>
+              <Link to={`/uredi-paket/${destination.id}`}>
+                <button>Uredi</button>
+              </Link>
             </li>
           ))}
         </ul>
