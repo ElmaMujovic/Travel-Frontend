@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import SliderSlick from "../components/UI/SliderSlick";
 import CreatePackage from "./CreatePackage";
@@ -34,19 +35,17 @@ export const Home = () => {
             <li key={index}>
               <h3>{destination.naziv}</h3>
               <p>{destination.opis}</p>
-              <p>Tag: {destination.tag}</p>
+              <p>Tag: <Link to={`/destinacije-paketa/${destination.id}`}>{destination.tag}</Link></p> {/* Dodaj Link */}
               <img
                 src={`https://localhost:7016/images/${destination.imagePath}`}
-                style={{height:"300px", width:"300px"}}
-              
+                style={{ height: "300px", width: "300px" }}
               />
-
             </li>
           ))}
         </ul>
       </div>
     </div>
   );
-}
+};
 
 export default Home;

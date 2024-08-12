@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../components/UI/DestinacijePaketa.css';
+import { useParams } from "react-router-dom";
 
 const DestinacijePaketa = () => {
   const [paketi, setPaketi] = useState([]);
   const [selectedPaketId, setSelectedPaketId] = useState("");
   const [nazivDestinacije, setNazivDestinacije] = useState("");
   const [opisDestinacije, setOpisDestinacije] = useState("");
-  const [imagePath, setImagePath] = useState(null);
+  const [slika, setSlika] = useState(null); // Changed from imagePath to slika
 
   useEffect(() => {
-    // Fetch all available packages
     axios.get("https://localhost:7016/api/Paket")
       .then((res) => setPaketi(res.data))
       .catch((err) => console.error("Greska prilikom ucitavanja paketa:", err));
@@ -26,8 +26,8 @@ const DestinacijePaketa = () => {
     const formData = new FormData();
     formData.append("paketId", selectedPaketId);
     formData.append("naziv", nazivDestinacije);
-    formData.append("opis", opisDestinacije); // Ispravljeno ovde
-    formData.append("slika", imagePath);
+    formData.append("opis", opisDestinacije);
+    formData.append("slika", slika); // Changed from imagePath to slika
 
     axios.post("https://localhost:7016/api/DestinacijaPaketa", formData)
       .then((res) => {
@@ -70,10 +70,13 @@ const DestinacijePaketa = () => {
           />
         </div>
         <div className="form-group">
-          <label>Slika Destinacije:</label>
+          <label htmlFor="image">Slika Destinacije:</label>
           <input
             type="file"
-            onChange={(e) => setImagePath(e.target.files[0])}
+             name="image"
+            id="image"
+            onChange={(e) => setSlika(e.target.files[0])} // Changed from setImagePath to setSlika7
+            required
           />
         </div>
         <button type="submit" className="submit-button">Dodaj Destinaciju</button>
