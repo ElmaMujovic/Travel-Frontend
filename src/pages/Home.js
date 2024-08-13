@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import SliderSlick from "../components/UI/SliderSlick";
-import CreatePackage from "./CreatePackage";
+import '../components/UI/home.css';
 
 export const Home = () => {
   const [destinations, setDestinations] = useState([]);
@@ -38,25 +38,31 @@ export const Home = () => {
         {/* <CreatePackage onPackageCreated={handlePackageCreated} /> */}
       </div>
 
-      <div style={{ marginTop: "2rem" }}>
-        <h2>Travel Packages</h2>
-        <ul>
+      <div className="packages-container">
+        <h2>PAKETI</h2>
+        <div className="packages-grid">
           {destinations.map((destination, index) => (
-            <li key={index}>
-              <h3>{destination.naziv}</h3>
-              <p>{destination.opis}</p>
-              <p>Tag: <Link to={`/destinacije-paketa/${destination.id}`}>{destination.tag}</Link></p>
-              <img
-                src={`https://localhost:7016/images/${destination.imagePath}`}
-                style={{ height: "300px", width: "300px" }}
-              />
-              <button onClick={() => handleDelete(destination.id)}>Obriši</button>
-              <Link to={`/uredi-paket/${destination.id}`}>
-                <button>Uredi</button>
-              </Link>
-            </li>
+            <div className="package-card" key={index}>
+              <div className="image-container">
+                <img
+                  src={`https://localhost:7016/images/${destination.imagePath}`}
+                  alt={destination.naziv}
+                />
+                <h3 className="package-title">{destination.naziv}</h3>
+                <Link to={`/destinacije-paketa/${destination.id}`} className="package-tag">
+                  {destination.tag} <span className="arrow">→</span>
+                </Link>
+              </div>
+              <p className="package-description">{destination.opis}</p>
+              <div className="package-actions">
+                <button class="edit-button" onClick={() => handleDelete(destination.id)}>Obriši</button>
+                <Link to={`/uredi-paket/${destination.id}`}>
+                  <button class="delete-button"> Uredi</button>
+                </Link>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );
