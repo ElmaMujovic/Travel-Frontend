@@ -77,20 +77,20 @@ const Profile = () => {
         <div className="user-info">
             <div className="user-image">
                 {user && <img src={`https://localhost:7016/images/` + user.user.imagePath } alt="" />}
-                <Link to={'/update-profile'}><p>Edit profile</p></Link><br /><br /><br /><br />
-                <button onClick={submit}>Delete my account</button>
+                <Link to={'/update-profile'}><p>Uredi profil</p></Link><br /><br /><br /><br />
+                {/* <button onClick={submit}>Delete my account</button> */}
             </div>
             <div className="user-details">
-            {!user?<p></p>:<h2 style={{textAlign:"center", paddingBottom:"3rem"}}>Your account</h2>}
-            {!user?<p></p>:<p>First name: {user.user.ime}</p>}
-            {!user?<p></p>:<p>Last name: {user.user.prezime} </p>}
-            {!user?<p></p>:<p>Email: {user.user.email} </p>}
-            {!user?<p></p>:<p>City: {user.user.grad}</p>}
-            {!user?<p></p>:<p>Phone number: {user.user.godina}</p>}
+            {!user?<p></p>:<h2 style={{textAlign:"center", paddingBottom:"3rem"}}>Tvoj profil</h2>}
+            {!user?<p></p>:<p>Ime: {user.user.ime}</p>}
+            {!user?<p></p>:<p>Prezime: {user.user.prezime} </p>}
+            {!user?<p></p>:<p>E-mail: {user.user.email} </p>}
+            {!user?<p></p>:<p>Grad: {user.user.grad}</p>}
+            {!user?<p></p>:<p>Broj telefona: {user.user.godina}</p>}
             {/* <button onClick={handleSubmit}>Delete my profile</button> */}
             </div>
         </div>
-        <h1 style={{textAlign:"center"}}>My Favorites Cars</h1>
+        <h1 style={{textAlign:"center"}}>Moje omiljene destinacije</h1>
         <div style={{ display: "flex", justifyContent: "center" }}>
     {favCars.length === 0 ? (
         <p>Nema omiljenih destinacija</p>

@@ -2,25 +2,36 @@
     position: relative;
     text-align: center;
     color: #333;
-    padding-bottom: 20px; /* Dodat prostor ispod */
+    padding: 20px; /* Povećan unutrašnji razmak */
+    border-radius: 12px; /* Zaobljenje ivica */
+    /* background-color: #fff; Pozadina oko sadržaja */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Više senki za dodatni efekat */
+    max-width: 800px; /* Maksimalna širina div-a */
+    margin: 20px auto; /* Centriraj div na stranici */
 }
 
 .destinacija-image-wrapper {
     position: relative;
     display: inline-block;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8); /* Senka oko slike */
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
     max-width: 700px; /* Povećana širina slike */
     margin: 0 auto; /* Centriraj sliku */
+    background-color: transparent; /* Pozadina unutar wrapper-a */
+    border: none; /* Ukloni border */
 }
 
 .destinacija-image {
     width: 100%;
     height: auto;
     border-radius: 10px; /* Lagano zaobljenje ivica */
+    display: block; /* Ukloni dodatne margine oko slike */
+    margin: 0; /* Ukloni marginu */
+    border: none; /* Ukloni border */
 }
+
 
 .destinacija-icons {
     position: absolute;
@@ -82,7 +93,7 @@
 
 .price-info .price,
 .price-info .old-price {
-    padding: 5px;
+    padding: 10px; /* Veći padding za bolju čitljivost */
     border-radius: 8px; /* Lagano zaobljenje ivica */
     color: white;
     font-weight: bold;
@@ -90,8 +101,9 @@
     display: flex;
     align-items: center; /* Vertikalno poravnanje teksta */
     justify-content: center; /* Horizontalno poravnanje teksta */
-    min-width: 90px; /* Minimalna širina div-a */
+    min-width: 100px; /* Minimalna širina div-a */
     font-size: 1.2rem; /* Povećana veličina fonta */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Senka za bolju vidljivost */
 }
 
 .price-info .price {
@@ -108,6 +120,10 @@
     margin: 20px auto; /* Centriraj opis */
     padding: 10px;
     text-align: center; /* Centriraj tekst unutar div-a */
+    background-color: #f4ececbb; /* Pozadina oko opisa */
+    border: 1px solid #ddd; /* Obavezivanje opisa */
+    border-radius: 10px; /* Zaobljenje ivica */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Senka za dodatni efekat */
 }
 
 .destinacija-actions {
@@ -116,14 +132,14 @@
 }
 
 .btn-delete, .btn-edit {
-    padding: 10px 20px; /* Razmak unutar dugmadi */
+    padding: 12px 24px; /* Razmak unutar dugmadi */
     margin: 5px; /* Razmak između dugmadi */
     border: none;
     border-radius: 5px;
     color: white;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s; /* Dodaj transformaciju za hover efekat */
 }
 
 .btn-delete {
@@ -132,6 +148,7 @@
 
 .btn-delete:hover {
     background-color: #c82333; /* Tamnija crvena za hover efekat */
+    transform: scale(1.05); /* Lagano povećanje za hover efekat */
 }
 
 .btn-edit {
@@ -140,4 +157,5 @@
 
 .btn-edit:hover {
     background-color: #218838; /* Tamnija zelena za hover efekat */
+    transform: scale(1.05); /* Lagano povećanje za hover efekat */
 }

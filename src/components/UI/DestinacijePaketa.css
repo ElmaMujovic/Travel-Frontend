@@ -120,3 +120,99 @@ footer {
     clear: both; /* Osiguraj da footer bude na kraju stranice */
     position: relative;
 }
+
+
+
+/* Medijski upiti za različite veličine ekrana */
+
+/* Tableti i manji uređaji (768px i manje) */
+@media (max-width: 768px) {
+    .destinacije-paketa {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="file"] {
+        padding: 10px;
+    }
+
+    .form-group button {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* Telefoni (480px i manje) */
+@media (max-width: 480px) {
+    .destinacije-paketa {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="file"] {
+        padding: 8px;
+    }
+
+    .form-group button {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+/* Ako se footer pomera */
+footer {
+    clear: both; /* Osiguraj da footer bude na kraju stranice */
+    position: relative;
+}
+
+
+/* Medijski upiti za različite veličine ekrana */
+
+/* Tableti i manji uređaji (768px i manje) */
+@media (max-width: 768px) {
+    .destinacije-paketa {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="file"] {
+        padding: 10px;
+    }
+
+    .form-group button {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* Telefoni (480px i manje) */
+@media (max-width: 480px) {
+    .destinacije-paketa {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="file"] {
+        padding: 8px;
+    }
+
+    .form-group button {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+/* Ako se footer pomera */
+footer {
+    clear: both; /* Osiguraj da footer bude na kraju stranice */
+    position: relative;
+}
+

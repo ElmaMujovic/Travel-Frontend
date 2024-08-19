@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import SliderSlick from "../components/UI/SliderSlick";
 import '../components/UI/home.css';
+import { useMainContext } from '../context/main-context';
 
 export const Home = () => {
   const [destinations, setDestinations] = useState([]);
   const [packageCreated, setPackageCreated] = useState(false);
+  const { user } = useMainContext(); // Preuzmi korisnički kontekst
 
   useEffect(() => {
     axios.get('https://localhost:7016/api/Paket')
@@ -55,10 +57,14 @@ export const Home = () => {
               </div>
               <p className="package-description">{destination.opis}</p>
               <div className="package-actions">
-                <button class="edit-button" onClick={() => handleDelete(destination.id)}>Obriši</button>
-                <Link to={`/uredi-paket/${destination.id}`}>
-                  <button class="delete-button"> Uredi</button>
-                </Link>
+                {user && user.role === 'Admin' && (
+                  <>
+                    <button className="edit-button" onClick={() => handleDelete(destination.id)}>Obriši</button>
+                    <Link to={`/uredi-paket/${destination.id}`}>
+                      <button className="delete-button"> Uredi</button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           ))}

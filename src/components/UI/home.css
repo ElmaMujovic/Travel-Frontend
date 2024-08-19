@@ -140,3 +140,22 @@ h2 {
     background: linear-gradient(90deg, #0056b3, #003a75);
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
 }
+
+
+
+/* Media queries za manje ekrane */
+@media (max-width: 1200px) {
+    .packages-grid {
+        grid-template-columns: repeat(2, 1fr); /* Dva kolona za srednje velike ekrane */
+    }
+}
+
+@media (max-width: 768px) {
+    .packages-grid {
+        grid-template-columns: 1fr; /* Jedna kolona za mobilne uređaje */
+    }
+
+    .package-card {
+        padding: 15px; /* Manje padding za manje ekrane */
+    }
+}

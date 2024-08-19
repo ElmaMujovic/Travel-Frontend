@@ -41,7 +41,7 @@ const DestinacijePaketa = () => {
 
   return (
     <div className="destinacije-paketa">
-      <h2 className="title">Dodaj Destinaciju za Paket</h2>
+      <h2 className="title">Dodaj destinaciju za paket</h2>
       <form onSubmit={handleSubmit} className="form-group">
         <div className="form-group">
           <label>Izaberi Paket:</label>

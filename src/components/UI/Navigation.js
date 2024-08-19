@@ -21,12 +21,12 @@ const Navigation = () => {
     return (
         <div className='navigation'>
             <ul>
-                <Link to='/'>Home</Link>
+                <Link to='/'>Početna</Link>
                 {/* <Link to='/about'>About</Link> */}
-                {user && user.role === 'User'? <Link to="/about">About</Link>:""}
+                {user && user.role === 'User'? <Link to="/about">O nama</Link>:""}
                 {!user && <Link to='/login'>Login</Link>}
                 {user && <button onClick={logoutHandler} style={{textDecoration:"none", border:"none", backgroundColor:"rgb(199, 209, 245)", color:"white", marginTop:"10px", fontSize:"15px", marginRight:"6px"}}>Logout</button>}
-                <Link to='/contact'>Contact</Link>
+                <Link to='/contact'>Kontakt</Link>
                 {user && (user.role === 'User' || user.role === 'Moderator') ? <Link to="/fleet">Fleet</Link> : ""}
 
                 {user && user.role === 'Moderator'? <Link to="/create-car">Create car</Link>:""}
@@ -35,7 +35,7 @@ const Navigation = () => {
                 {user && user.role === 'Admin'? <Link to="/create-list">Kreiraj listu</Link>:""}
 
 
-                {user &&  <Link to='/profile'>My Profile</Link>}
+                {user &&  <Link to='/profile'>Moj profil</Link>}
 
                 <li className='second-part'><b>TravelApp</b></li>
                 

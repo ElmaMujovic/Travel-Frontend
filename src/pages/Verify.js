@@ -38,7 +38,7 @@ const Verify = () => {
 
         <div className="verify-page" style={{height:"740px"}}>
             <div className="verify-page page">
-            <p> Please enter your code here:</p>
+            <p> Molim Vas unesite kod ovde:</p>
             <div className="verify-page inputs">
             <input type="text" onChange={(e)=> setCode(e.target.value)} /> 
             <input type="submit" value="Send" onClick={handlerSubmit}  />

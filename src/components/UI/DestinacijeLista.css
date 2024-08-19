@@ -124,3 +124,75 @@
 .action-buttons button:hover {
     background-color: #0056b3;
 }
+
+
+
+/* Tableti i manji uređaji (768px i manje) */
+@media (max-width: 768px) {
+    .destinacije-grid {
+        grid-template-columns: repeat(1, 1fr); /* Jedna kolona na manjim ekranima */
+    }
+
+    .destinacija-card {
+        height: auto; /* Podesi visinu kartice na automatsku */
+        width: 100%; /* Širina kartice na 100% */
+    }
+
+    .destinacija-title {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    .destinacija-description {
+        font-size: 0.8em;
+    }
+
+    .kompletna-ponuda-button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    .action-buttons {
+        padding: 5px;
+    }
+
+    .action-buttons button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}
+
+/* Telefoni (480px i manje) */
+@media (max-width: 480px) {
+    .destinacije-grid {
+        grid-template-columns: 1fr; /* Jedna kolona za najmale ekrane */
+    }
+
+    .destinacija-card {
+        height: auto; /* Visina kartice na automatsku */
+        width: 100%; /* Širina kartice na 100% */
+    }
+
+    .destinacija-title {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .destinacija-description {
+        font-size: 0.7em;
+    }
+
+    .kompletna-ponuda-button {
+        padding: 5px 10px;
+        font-size: 0.7em;
+    }
+
+    .action-buttons {
+        padding: 5px;
+    }
+
+    .action-buttons button {
+        padding: 5px 10px;
+        font-size: 0.7em;
+    }
+}

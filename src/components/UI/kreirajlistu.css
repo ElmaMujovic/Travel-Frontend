@@ -1,9 +1,4 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e0e5ec;
-}
-
-.create-package {
+.create-list {
     max-width: 600px;
     margin: 50px auto;
     padding: 30px;
@@ -15,14 +10,14 @@ body {
     animation: pulse 2s infinite;
 }
 
-.create-package img {
+.create-list img {
     width: 100%;
     height: auto;
     border-radius: 10px;
     filter: drop-shadow(4px 4px 10px yellow);
 }
 
-.create-package::before {
+.create-list::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -35,16 +30,16 @@ body {
     z-index: 0;
 }
 
-.create-package:hover::before {
+.create-list:hover::before {
     transform: rotate(40deg);
     background: radial-gradient(circle, rgba(255,255,255,0.3) 20%, transparent 100%);
 }
 
-.create-package:hover {
+.create-list:hover {
     box-shadow: 0 0 30px rgba(0, 123, 255, 0.7), 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
-.create-package h2 {
+.create-list h2 {
     text-align: center;
     color: #333;
     margin-bottom: 25px;
@@ -67,7 +62,8 @@ body {
 
 .form-group input[type="text"],
 .form-group input[type="number"],
-.form-group input[type="file"] {
+.form-group input[type="file"],
+.form-group textarea {
     width: calc(100% - 20px);
     padding: 12px;
     border: 1px solid #ccc;
@@ -78,7 +74,8 @@ body {
 
 .form-group input[type="text"]:focus,
 .form-group input[type="number"]:focus,
-.form-group input[type="file"]:focus {
+.form-group input[type="file"]:focus,
+.form-group textarea:focus {
     border-color: #007bff;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
@@ -103,7 +100,6 @@ body {
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
 }
 
-
 @keyframes pulse {
     0% {
         box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
@@ -113,45 +109,5 @@ body {
     }
     100% {
         box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
-    }
-}
-
-
-
-/* Tableti i manji uređaji (768px i manje) */
-@media (max-width: 768px) {
-    .create-package {
-        margin: 20px;
-        padding: 20px;
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="number"],
-    .form-group input[type="file"] {
-        padding: 10px;
-    }
-
-    .form-group button {
-        padding: 10px;
-        font-size: 16px;
-    }
-}
-
-/* Telefoni (480px i manje) */
-@media (max-width: 480px) {
-    .create-package {
-        margin: 10px;
-        padding: 15px;
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="number"],
-    .form-group input[type="file"] {
-        padding: 8px;
-    }
-
-    .form-group button {
-        padding: 8px;
-        font-size: 14px;
     }
 }
