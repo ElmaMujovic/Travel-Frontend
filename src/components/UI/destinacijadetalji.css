@@ -1,0 +1,143 @@
+.destinacija-detalji {
+    position: relative;
+    text-align: center;
+    color: #333;
+    padding-bottom: 20px; /* Dodat prostor ispod */
+}
+
+.destinacija-image-wrapper {
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 700px; /* Povećana širina slike */
+    margin: 0 auto; /* Centriraj sliku */
+}
+
+.destinacija-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Lagano zaobljenje ivica */
+}
+
+.destinacija-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px; /* Razmak između ikona */
+    color: white;
+    margin-right: 30px; /* Pomeri sve ikone levo za 30px */
+}
+
+.icon-container {
+    position: relative; /* Ovo omogućava prikaz tooltipa ispod ikone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 100px; /* Širina tooltipa, može se prilagoditi */
+    background-color: rgba(0, 0, 0, 0.7); /* Pozadina tooltipa */
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    bottom: -30px; /* Pozicija tooltipa ispod ikone */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s; /* Efekat prelaska */
+    font-size: 0.8rem; /* Manja veličina fonta */
+}
+
+.icon-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.destinacija-icons > * {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 6px; /* Smanjen padding za manje ikone */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; /* Smanjena širina ikona */
+    height: 24px; /* Smanjena visina ikona */
+}
+
+.price-info {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 15px; /* Povećan razmak između cena */
+}
+
+.price-info .price,
+.price-info .old-price {
+    padding: 5px;
+    border-radius: 8px; /* Lagano zaobljenje ivica */
+    color: white;
+    font-weight: bold;
+    text-align: center; /* Centriraj tekst unutar div-a */
+    display: flex;
+    align-items: center; /* Vertikalno poravnanje teksta */
+    justify-content: center; /* Horizontalno poravnanje teksta */
+    min-width: 90px; /* Minimalna širina div-a */
+    font-size: 1.2rem; /* Povećana veličina fonta */
+}
+
+.price-info .price {
+    background-color: #28a745; /* Boja za novu cenu */
+}
+
+.price-info .old-price {
+    background-color: #dc3545; /* Boja za staru cenu */
+    text-decoration: line-through;
+}
+
+.destinacija-opis {
+    max-width: 700px; /* Širina koja odgovara slici */
+    margin: 20px auto; /* Centriraj opis */
+    padding: 10px;
+    text-align: center; /* Centriraj tekst unutar div-a */
+}
+
+.destinacija-actions {
+    margin-top: 20px; /* Razmak iznad dugmadi */
+    text-align: center; /* Centriraj dugmad */
+}
+
+.btn-delete, .btn-edit {
+    padding: 10px 20px; /* Razmak unutar dugmadi */
+    margin: 5px; /* Razmak između dugmadi */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Crvena boja za brisanje */
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Tamnija crvena za hover efekat */
+}
+
+.btn-edit {
+    background-color: #28a745; /* Zeleno za uređivanje */
+}
+
+.btn-edit:hover {
+    background-color: #218838; /* Tamnija zelena za hover efekat */
+}

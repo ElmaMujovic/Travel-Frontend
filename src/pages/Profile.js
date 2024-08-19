@@ -53,7 +53,7 @@ const Profile = () => {
         try{
             if(user !== null){
 
-            const response = await axios.get(`http://edinak1-001-site1.ftempurl.com/api/User/favourites/${user.user.id}`)
+            const response = await axios.get(`https://localhost:7016/KorisnikDestinacija/user/destinacije/${user.user.id}`)
             setFavCars(response.data);}
             
              
@@ -91,17 +91,25 @@ const Profile = () => {
             </div>
         </div>
         <h1 style={{textAlign:"center"}}>My Favorites Cars</h1>
-        <div style={{display:"flex", justifyContent:"center"}}>
-            
-           {favCars.map((car, index) =>
-           {
-                return(
-                    <div className="removeFavCar" key={car.car.id}>
-                    <Card id={car.car.id} image={car.car.path} name={car.car.name} price={car.car.price} key={car.id} className="favCards"/>
-                    </div>
-                )
-           })}
-        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+    {favCars.length === 0 ? (
+        <p>Nema omiljenih destinacija</p>
+    ) : (
+        favCars.map((car) => (
+            <div className="removeFavCar" key={car.id}>
+                <Card 
+                    id={car.id} 
+                    image={`${car.imagePath}`} 
+                    name={car.naziv} 
+                    price={car.cena} 
+                    className="favCards"
+                />
+            </div>
+        ))
+    )}
+</div>
+
+
        </div>
      );
 }

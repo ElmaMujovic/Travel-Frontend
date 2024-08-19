@@ -87,18 +87,35 @@ const CarDetails = () => {
        
     }
 
+    // const removeAdFromFavourite = async () => {
+    //     await axios.delete(`http://edinak1-001-site1.ftempurl.com/api/User/remove-favorite/${favAd.id}`)
+    //         .then(res => console.log("okej"))
+    //         await fetchFavouritesCar();
+    // }
     const removeAdFromFavourite = async () => {
-        await axios.delete(`http://edinak1-001-site1.ftempurl.com/api/User/remove-favorite/${favAd.id}`)
-            .then(res => console.log("okej"))
-            await fetchFavouritesCar();
-    }
+       await axios.delete('https://localhost:7016/KorisnikDestinacija/api', {
+            data: {
+              korisnikId: user.user.id,  
+              destinacijaId: id  
+            }
+          })
+          .then(response => {
+            console.log('Lajk uspešno obrisan:', response.data);
+            console.log(id);
+          })
+          .catch(error => {
+            console.error('Greška prilikom brisanja lajka:', error);
+          });
+      };
+      
+      
 
 
     const addAdToFavourites = async () => {
         try {
-            await axios.post('http://edinak1-001-site1.ftempurl.com/api/User/favourites', {
-                userId: user.user.id,
-                carId: id
+            await axios.post('https://localhost:7016/KorisnikDestinacija/api', {
+                korisnikId: user.user.id,
+                destinacijaId: id
             })
 
             await fetchFavouritesCar();

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import '../components/UI/DestinacijePaketa.css';
+import '../components/UI/DestinacijeLista.css';
 
+
+
+///PRIKAZ PRVIH DESTINACIJJA 
 const DestinacijeList = () => {
   const { paketId } = useParams();
   const [destinations, setDestinations] = useState([]);
@@ -13,7 +17,7 @@ const DestinacijeList = () => {
         .then((res) => {
           setDestinations(res.data);
         })
-        .catch((err) => console.error("Greska prilikom ucitavanja destinacija:", err));
+        .catch((err) => console.error("Greška prilikom učitavanja destinacija:", err));
     }
   }, [paketId]);
 
@@ -30,31 +34,37 @@ const DestinacijeList = () => {
 
   return (
     <div className="destinacije-list">
-      <h2>Destinacije za Paket {paketId}</h2>
-
-      <ul>
+      <div className="destinacije-grid">
         {destinations.length > 0 ? (
           destinations.map((destination) => (
-            <li key={destination.id}>
-              <h3>{destination.naziv}</h3>
-              <p>{destination.opis}</p>
+            <div className="destinacija-card" key={destination.id}>
               <img
                 src={`https://localhost:7016/images/${destination.slika}`}
-                style={{ height: "300px", width: "300px" }}
                 alt={destination.naziv}
+                className="destinacija-image"
               />
-              <button onClick={() => handleDelete(destination.id)}>Obriši</button>
-              <Link to={`/uredi-destinaciju-lista/${destination.id}`}>
-                <button>Uredi</button>
-              </Link>
-            </li>
+              <h3 className="destinacija-title">{destination.naziv}</h3>
+              <div className="overlay">
+                <p className="destinacija-description">{destination.opis}</p>
+                <Link to={`/destinacija-detalji/${destination.id}`}>
+    <button className="kompletna-ponuda-button">Kompletna ponuda</button>
+</Link>
+
+              </div>
+              <div className="action-buttons">
+                <button onClick={() => handleDelete(destination.id)}>Obriši</button>
+                <Link to={`/uredi-destinaciju-lista/${destination.id}`}>
+                  <button>Uredi</button>
+                </Link>
+              </div>
+            </div>
           ))
         ) : (
           <p>Nema dostupnih destinacija za ovaj paket.</p>
         )}
-      </ul>
+      </div>
     </div>
-  );
+   );
 };
 
 export default DestinacijeList;

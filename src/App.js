@@ -28,7 +28,9 @@ import DestinacijePaketa from './pages/DestinacijePaketa';
 import DestinacijeList from './pages/DestinacijeList'; // Dodaj ovu liniju
 import EditPackage from './pages/EditPackage';
 import EditDestinationList from './pages/EditDestinationList';
+import DestinacijaDetalji from './pages/DestinacijaDetalji';
 
+import CustomList from './pages/List'; // Dodaj ovu liniju
 
 /* eslint-disable */
 
@@ -91,6 +93,8 @@ function App() {
           <Route path="/destinacije-paketa/:paketId" element={<DestinacijeList />} />
           <Route path="/uredi-paket/:id" element={<EditPackage />} />
           <Route path="/uredi-destinaciju-lista/:destinationId" element={<EditDestinationList />} />
+          <Route path="/create-list" element={<CustomList />} />
+          <Route path="/destinacija-detalji/:destinacijaId" element={<DestinacijaDetalji />} />
 
           
 

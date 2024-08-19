@@ -114,3 +114,9 @@ body {
         box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
     }
 }
+
+/* Ako se footer pomera, dodaj ovo na kraju CSS-a */
+footer {
+    clear: both; /* Osiguraj da footer bude na kraju stranice */
+    position: relative;
+}

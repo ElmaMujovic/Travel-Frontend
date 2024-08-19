@@ -19,7 +19,7 @@ const Register = () => {
     const   [isRevealPwd, setIsRevealPwd] = useState(false);
     const [error, setError] = useState("");
     const[path, setPath] = useState(null);
-    const [role, setRole] = useState("user");
+    const [role, setRole] = useState("");
     const handleRoleChange = (e) => {
         setRole(e.target.value);
        
@@ -73,6 +73,7 @@ const Register = () => {
         setConfirmPass({...confirmPass, isValid:true});
         setYear({...year, isValid:true});
         setCity({...city, isValid:true});
+        
 
         console.log(password);
         console.log(confirmPass);
@@ -142,7 +143,7 @@ const Register = () => {
         formData.append("userRegister.Password", password.value);
         formData.append("userRegister.Godina", year.value);
         formData.append("userRegister.Grad", city.value);
-        formData.append("role", "user");
+        formData.append("role", role);
         formData.append("path", path)
         try {
             await axios.post('https://localhost:7016/api/Identity/register', formData)
