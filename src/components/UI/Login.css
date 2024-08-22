@@ -1,0 +1,174 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e0e5ec;
+}
+
+
+/* General styles */
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0e5ec;
+}
+
+.auth-card {
+    max-width: 400px;
+    width: 100%;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+.header h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Form control styles */
+.form-control {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-control label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-control input[type="email"],
+.form-control input[type="password"],
+.pwd-container input[type="text"] {
+    width: calc(100% );
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fafafa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control input[type="email"]:focus,
+.form-control input[type="password"]:focus,
+.pwd-container input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Password container and toggle styles */
+.pwd-container {
+    position: relative;
+    width: 100%;
+}
+
+.pwd-container img {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.pwd-container img:hover {
+    opacity: 0.7;
+}
+
+/* Link style */
+.form-control-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.form-control-link:hover {
+    color: #0056b3;
+}
+
+/* Button styles */
+.form-control-button input[type="submit"] {
+    width: 80%;
+    padding: 12px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 30px;
+    margin-top: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control-button input[type="submit"]:hover {
+    background: linear-gradient(90deg, #0056b3, #003a75);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+.form-control-button p {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(0, 123, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .auth-card {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .form-control input[type="email"],
+    .form-control input[type="password"],
+    .pwd-container input[type="text"] {
+        padding: 10px;
+    }
+
+    .form-control-button input[type="submit"] {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .form-control input[type="email"],
+    .form-control input[type="password"],
+    .pwd-container input[type="text"] {
+        padding: 8px;
+    }
+
+    .form-control-button input[type="submit"] {
+        padding: 8px;
+        font-size: 14px;
+    }
+}

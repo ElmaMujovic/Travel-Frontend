@@ -12,10 +12,9 @@ import Contact from './pages/Contact';
 import "slick-carousel/slick/slick.css";
 import 'slick-carousel/slick/slick-theme.css';
 import About from './pages/About';
-import CreateCar from './pages/CreateCar';
 import CarDetails from './pages/CarDetails';
 import Profile from './pages/Profile';
-import UpdateCar from './pages/UpdateCar';
+// import UpdateCar from './pages/UpdateCar';
 import UpdateProfile from './pages/UpdateProfile';
 import Verify from './pages/Verify';
 import jwt_decode from "jwt-decode";
@@ -31,7 +30,8 @@ import EditDestinationList from './pages/EditDestinationList';
 import DestinacijaDetalji from './pages/DestinacijaDetalji';
 
 import CustomList from './pages/List'; // Dodaj ovu liniju
-
+import KreirajDestinciju from './pages/KreirajDestinciju';
+import EditDestination from './pages/EditDestination'; // ili putanja do vašeg EditDestination fajla
 /* eslint-disable */
 
 function App() {
@@ -79,10 +79,11 @@ function App() {
           <Route path='/fleet' element={<Fleet />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<About />} />
-          <Route path='/create-car' element={<CreateCar />} />
+          {/* <Route path='/create-car' element={<KreirajDestinciju />} /> */}
+          <Route path="/create-destination" element ={<KreirajDestinciju />} />
           <Route path='/car-details/:id' element={<CarDetails />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/update-car/:id' element={<UpdateCar />} />
+          {/* <Route path='/update-car/:id' element={<UpdateCar />} /> */}
           <Route path='/update-profile' element={<UpdateProfile />} />
           <Route path='/verify' element={<Verify />} />
           <Route path='/reset-password/:token' element={<ResetPassword/>}/>
@@ -95,6 +96,7 @@ function App() {
           <Route path="/uredi-destinaciju-lista/:destinationId" element={<EditDestinationList />} />
           <Route path="/create-list" element={<CustomList />} />
           <Route path="/destinacija-detalji/:destinacijaId" element={<DestinacijaDetalji />} />
+          <Route path="/edit-destination/:id" element={<EditDestination />} />
 
           
 

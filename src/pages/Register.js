@@ -5,6 +5,7 @@ import { regexName, regexSurname, regexEmail, regexPassword, regexLocation } fro
 import addNotification, { Notifications } from 'react-push-notification';
 import showPwdImg from './images/show-password.svg';
 import hidePwdImg from './images/hide-password.svg';
+import '../components/UI/Registracija.css'; 
 
 const Register = () => {
     const [email, setEmail] = useState({value:"", isValid:true});
@@ -19,7 +20,7 @@ const Register = () => {
     const   [isRevealPwd, setIsRevealPwd] = useState(false);
     const [error, setError] = useState("");
     const[path, setPath] = useState(null);
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("User");
     const handleRoleChange = (e) => {
         setRole(e.target.value);
        
@@ -31,9 +32,9 @@ const Register = () => {
 
     function successNotification() {
         addNotification({
-            title: 'Success',
-            subtitle: 'You have successfully registered',
-            message: 'Welcome to Car2Go',
+            title: 'Uspešno',
+            subtitle: 'Uspešno ste se registrovali',
+            message: 'Dobrodošli u TravelApp',
             theme: 'light',
             closeButton: "X",
             backgroundTop: "violet",
@@ -78,23 +79,23 @@ const Register = () => {
         console.log(password);
         console.log(confirmPass);
         if (!validate(firstName.value, "text", regexName)) {
-            setHasError("Please enter valid first name");
+            setHasError("Unesite važeće ime");
             setFirstname({ ...firstName, isValid: false });
             return;
           }
         if (!validate(lastName.value, "text", regexSurname)) {
-        setHasError("Please enter valid last name");
+        setHasError("Unesite važeće prezime");
         setLastname({ ...lastName, isValid: false });
         return;
         }
 
         if (!validate(email.value, "email", regexEmail)) {
-            setHasError("Please enter valid email");
+            setHasError("Unesite važeći email");
             setEmail({ ...email, isValid: false });
             return;
           }
         if (!validate(password.value, "password", regexPassword)) {
-        setHasError("Please enter valid password");
+        setHasError("Unesite važeću lozinku");
         setPassword({ ...password, isValid: false });
         return;
         
@@ -102,14 +103,14 @@ const Register = () => {
         if(confirmPass.value !== password.value)
         {
             
-            setHasError("Passwords don't match");
+            setHasError("Lozinke se ne poklapaju");
             setConfirmPass({...confirmPass, isValid:false});
             return;
             
         }
 
         if (!validate(city.value, "text", regexLocation)) {
-            setHasError("Please enter valid city");
+            setHasError("Unesite važeći grad");
             setCity({ ...city, isValid: false });
             return;
           }
@@ -161,92 +162,85 @@ const Register = () => {
         }
     }
     return (
-        <div className='page login-page'>
-            <Notifications />
-            <div className='login-card' style={{ height: "600px", marginTop: "8rem", marginBottom: "5rem" }}>
-
-                <form onSubmit={onSubmitHandler}>
-                    <h1>Create your account</h1>
-                    <div className='form-control-two'>
-                        
-                        <div className='form-control'>
-                            <label>First name</label>
-                            <input type='text' onChange={(e) => setFirstname({ ...firstName, value: e.target.value })} value={firstName.value}/>
-                            {!firstName.isValid && hasError && <div className='val'>Your first name is invalid</div>}
-                        </div>
-                        <div className='form-control'>
-                            <label>Last name</label>
-                            <input type='text' onChange={(e) => setLastname({ ...lastName, value: e.target.value })} value={lastName.value}/>
-                            {!lastName.isValid && hasError && <div className='val'>Your last name is invalid</div>}
-                        </div>
+    <div className='registration-page'>
+        <Notifications />
+        <div className='registration-card' style={{ height: "934px", marginTop: "28rem", marginBottom: "5rem" }}>
+            <form onSubmit={onSubmitHandler}>
+                <h1>Kreirajte svoj nalog                </h1>
+                <div className='registration-form-group-double'>
+                    <div className='registration-form-group'>
+                        <label>Ime</label>
+                        <input type='text' onChange={(e) => setFirstname({ ...firstName, value: e.target.value })} value={firstName.value}/>
+                        {!firstName.isValid && hasError && <div className='registration-error'>Vaše ime je nevažeće</div>}
                     </div>
-                    <div className='form-control'>
-                        <label>Email</label>
-                        <input type='email' onChange={(e) => { setEmail({ ...email, value: e.target.value }); }} value={email.value}/>
-                        {!email.isValid && hasError && <div className='val'>Your email is invalid</div>}
+                    <div className='registration-form-group'>
+                        <label>Prezime</label>
+                        <input type='text' onChange={(e) => setLastname({ ...lastName, value: e.target.value })} value={lastName.value}/>
+                        {!lastName.isValid && hasError && <div className='registration-error'>Vaše prezime je nevažeće</div>}
                     </div>
-
-                    <div className='form-control-two'>
-                        <div className='form-control'>
-                            <label>Password</label>
-                            <div className='pwd-container'>
-                            <input type={isRevealPwd? "text" : "password"} onChange={(e) => setPassword({ ...setPassword, value: e.target.value })} onFocus={() => { setMessage("Password must be 8 characters, contain 1 uppercase, lowercase, number, special character") }} onBlur={() => { setMessage("") }} value={password.value}  />
+                </div>
+                <div className='registration-form-group'>
+                    <label>Email</label>
+                    <input type='email' onChange={(e) => { setEmail({ ...email, value: e.target.value }); }} value={email.value}/>
+                    {!email.isValid && hasError && <div className='registration-error'>Vaše email je nevažeći</div>}
+                </div>
+                <div className='registration-form-group-double'>
+                    <div className='registration-form-group'>
+                        <label>Lozinka</label>
+                        <div className='registration-password-container'>
+                            <input type={isRevealPwd ? "text" : "password"} onChange={(e) => setPassword({ ...setPassword, value: e.target.value })} onFocus={() => { setMessage("Lozinka mora da ima 8 znakova, da sadrži jedno veliko slovo, mala slova, broj, specijalni znak") }} onBlur={() => { setMessage("") }} value={password.value} />
                             <img
                                 alt=''
                                 title={isRevealPwd ? "Hide password" : "Show password"}
                                 src={isRevealPwd ? hidePwdImg : showPwdImg}
                                 onClick={() => setIsRevealPwd(prevState => !prevState)}
-                               
-                                />
-                            </div>
-                            {!password.isValid && hasError && <div className='val'>Your password is invalid</div>}
-                            {<div className='val'>{message}</div>}
+                            />
                         </div>
-
-                        <div className='form-control'>
-                            <label>Confirm your password</label>
-                                <input type={isRevealPwd? "text" : "password"} onChange={(e) => setConfirmPass({ ...confirmPass, value: e.target.value })} value={confirmPass.value} />
-                            {!confirmPass.isValid && hasError && <div className='val'>Passwords do not match</div>}
-                        </div>
+                        {!password.isValid && hasError && <div className='registration-error'>Vaša lozinka je nevažeća
+                            </div>}
+                        <div className='registration-error'>{message}</div>
                     </div>
-
-                    <div className='form-control'>
-                        <label>Image</label>
-                        <input type='file' onChange={(e) => setPath(e.target.files[0])} onFocus={() => { }} />
-                        {!year.isValid && hasError && <div className='val'>Phone Number is invalid</div>}
-
+                    <div className='registration-form-group'>
+                        <label>Potvrdite lozinku
+                        </label>
+                        <input type={isRevealPwd ? "text" : "password"} onChange={(e) => setConfirmPass({ ...confirmPass, value: e.target.value })} value={confirmPass.value} />
+                        {!confirmPass.isValid && hasError && <div className='registration-error'>Lozinke se ne podudaraju
+                            </div>}
                     </div>
-
-                    <div className='form-control'>
-                        <label>Year</label>
-                        <input type='text' onChange={(e) => setYear({...year, value:e.target.value})} value={year.value} onFocus={() => { }} />
-                    </div>
-
-                    <div className='form-control'>
-                        <label>City</label>
-                        <input type='text' onChange={(e) => setCity({ ...city, value: e.target.value })}  value={city.value}/>
-                        {!city.isValid && hasError && <div className='val'>City is invalid</div>}
-                    </div>
-       
-
-<div className='form-control'>
-            <label>Role</label>
-            <select onChange={handleRoleChange} value={role}>
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-                <option value="moderator">Moderator</option>
-            </select>
+                </div>
+                <div className='registration-form-group'>
+                    <label>Slika</label>
+                    <input type='file' onChange={(e) => setPath(e.target.files[0])} onFocus={() => { }} />
+                    {!year.isValid && hasError && <div className='registration-error'>Broj telefona je nevažeći
+                        </div>}
+                </div>
+                <div className='registration-form-group'>
+                    <label>Godine</label>
+                    <input type='text' onChange={(e) => setYear({...year, value:e.target.value})} value={year.value} onFocus={() => { }} />
+                </div>
+                <div className='registration-form-group'>
+                    <label>Grad</label>
+                    <input type='text' onChange={(e) => setCity({ ...city, value: e.target.value })} value={city.value}/>
+                    {!city.isValid && hasError && <div className='registration-error'>Grad je nevažeći
+                        </div>}
+                </div>
+                <div className='registration-form-group'>
+                    <label>Role</label>
+                    <select onChange={handleRoleChange} value={role}>
+                        <option value="user">Korisnik</option>
+                        <option value="admin">Admin</option>
+                        <option value="moderator">Moderator</option>
+                    </select>
+                </div>
+                {error && <div className='registration-error' style={{ fontWeight: "bold", textAlign: "center" }}>{error}</div>}
+                <div className='registration-form-group'>
+                    <input type='submit' value='Prijavite se' />
+                </div>
+            </form>
         </div>
+    </div>
+)
 
-                    {error && <div style={{ fontWeight: "bold", textAlign: "center" }}>{error}</div>}
-                    <div className='form-control'>
-                        <input type='submit' value='Sign up' />
-                        <div></div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    )
 }
 
 export default Register

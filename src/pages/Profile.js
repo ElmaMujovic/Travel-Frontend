@@ -5,6 +5,7 @@ import Card from "../components/UI/Card";
 import { useMainContext } from '../context/main-context';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import '../components/UI/profile.css';
 const Profile = () => {
     const{user, onSetUserHandler} = useMainContext();
    const[favCars, setFavCars] = useState([]);
@@ -71,47 +72,45 @@ const Profile = () => {
    
    console.log(favCars)
    //prrr
-    return ( 
-
-       <div className="page profile-page">
-        <div className="user-info">
-            <div className="user-image">
-                {user && <img src={`https://localhost:7016/images/` + user.user.imagePath } alt="" />}
-                <Link to={'/update-profile'}><p>Uredi profil</p></Link><br /><br /><br /><br />
-                {/* <button onClick={submit}>Delete my account</button> */}
+   return (
+    <div className="profile-page">
+        <div className="profile-info">
+            <div className="profile-image">
+                {user && <img src={`https://localhost:7016/images/` + user.user.imagePath} alt="Profilna slika" />}
+                <Link to={'/update-profile'} className="edit-profile-link">Uredi profil</Link>
             </div>
-            <div className="user-details">
-            {!user?<p></p>:<h2 style={{textAlign:"center", paddingBottom:"3rem"}}>Tvoj profil</h2>}
-            {!user?<p></p>:<p>Ime: {user.user.ime}</p>}
-            {!user?<p></p>:<p>Prezime: {user.user.prezime} </p>}
-            {!user?<p></p>:<p>E-mail: {user.user.email} </p>}
-            {!user?<p></p>:<p>Grad: {user.user.grad}</p>}
-            {!user?<p></p>:<p>Broj telefona: {user.user.godina}</p>}
-            {/* <button onClick={handleSubmit}>Delete my profile</button> */}
+            <div className="profile-details">
+                {!user ? <p>Učitavanje...</p> : (
+                    <>
+                        <h2 className="profile-title">Moj profil</h2>
+                        <p>Ime: {user.user.ime}</p>
+                        <p>Prezime: {user.user.prezime}</p>
+                        <p>E-mail: {user.user.email}</p>
+                        <p>Grad: {user.user.grad}</p>
+                        <p>Broj godina: {user.user.godina}</p>
+                    </>
+                )}
             </div>
         </div>
-        <h1 style={{textAlign:"center"}}>Moje omiljene destinacije</h1>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-    {favCars.length === 0 ? (
-        <p>Nema omiljenih destinacija</p>
-    ) : (
-        favCars.map((car) => (
-            <div className="removeFavCar" key={car.id}>
-                <Card 
-                    id={car.id} 
-                    image={`${car.imagePath}`} 
-                    name={car.naziv} 
-                    price={car.cena} 
-                    className="favCards"
-                />
-            </div>
-        ))
-    )}
-</div>
-
-
-       </div>
-     );
+        <h1 className="favorites-title">Moje omiljene destinacije</h1>
+        <div className="favorites-container">
+            {favCars.length === 0 ? (
+                <p>Nema omiljenih destinacija</p>
+            ) : (
+                favCars.map((car) => (
+                    <div className="favorite-card" key={car.id}>
+                        <Card 
+                            id={car.id} 
+                            imagePath={`${car.imagePath}`} 
+                            naziv={car.naziv} 
+                            cena={car.cena} 
+                        />
+                    </div>
+                ))
+            )}
+        </div>
+    </div>
+);
 }
- 
+
 export default Profile;

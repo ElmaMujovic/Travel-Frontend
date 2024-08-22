@@ -26,13 +26,13 @@ const CreatePackage = ({ onPackageCreated }) => {
           }
       });
       console.log("Response data:", response.data);
-      alert("You have successfully created a package");
+      alert("Uspešno ste kreirali paket");
       if (onPackageCreated) {
           onPackageCreated(response.data);
       }
   } catch (e) {
       console.error("Error creating package:", e);
-      alert("An error occurred while creating the package");
+      alert("Došlo je do greške pri kreiranju paketa");
   }
   
 }
@@ -40,9 +40,9 @@ const CreatePackage = ({ onPackageCreated }) => {
   return (
     <div className='create-package'>
       <form onSubmit={submitHandler}>
-        <h2>Create Travel Package</h2>
+        <h2>Kreiraj Paket</h2>
         <div className="form-group">
-          <label htmlFor="name">Package Name</label>
+          <label htmlFor="name">Ime paketa</label>
           <input
             type="text"
             id='name'
@@ -52,7 +52,7 @@ const CreatePackage = ({ onPackageCreated }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description">Opis</label>
           <input
             type="text"
             id='description'
@@ -72,7 +72,7 @@ const CreatePackage = ({ onPackageCreated }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="image">Image</label>
+          <label htmlFor="image">Slika</label>
           <input
             type="file"
             name="image"
@@ -82,7 +82,7 @@ const CreatePackage = ({ onPackageCreated }) => {
           />
         </div>
         <div className="form-group">
-          <button type="submit">Create Package</button>
+          <button type="submit">Kreiraj aket</button>
         </div>
       </form>
     </div>

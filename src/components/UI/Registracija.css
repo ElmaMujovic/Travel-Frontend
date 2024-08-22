@@ -1,0 +1,165 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e0e5ec;
+}
+
+/* General styles */
+.registration-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0e5ec;
+    margin-bottom: 400px;
+}
+
+.registration-card {
+    max-width: 600px;
+    width: 100%;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+.registration-card h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Form control styles */
+.registration-form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.registration-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+.registration-form-group input[type="email"],
+.registration-form-group input[type="password"],
+.registration-password-container input[type="text"],
+.registration-form-group input[type="text"],
+.registration-form-group input[type="file"] {
+    width: calc(100%);
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fafafa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.registration-form-group input[type="email"]:focus,
+.registration-form-group input[type="password"]:focus,
+.registration-password-container input[type="text"]:focus,
+.registration-form-group input[type="text"]:focus,
+.registration-form-group input[type="file"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Password container and toggle styles */
+.registration-password-container {
+    position: relative;
+    width: 100%;
+}
+
+.registration-password-container img {
+    position: absolute;
+    left: 90%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.registration-password-container img:hover {
+    opacity: 0.7;
+}
+
+/* Error message styles */
+.registration-error {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Button styles */
+.registration-form-group input[type="submit"] {
+    width: 80%;
+    padding: 12px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.registration-form-group input[type="submit"]:hover {
+    background: linear-gradient(90deg, #0056b3, #003a75);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(0, 123, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .registration-card {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .registration-form-group input[type="email"],
+    .registration-form-group input[type="password"],
+    .registration-password-container input[type="text"] {
+        padding: 10px;
+    }
+
+    .registration-form-group input[type="submit"] {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .registration-card {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .registration-form-group input[type="email"],
+    .registration-form-group input[type="password"],
+    .registration-password-container input[type="text"] {
+        padding: 8px;
+    }
+
+    .registration-form-group input[type="submit"] {
+        padding: 8px;
+        font-size: 14px;
+    }
+}

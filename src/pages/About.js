@@ -1,73 +1,77 @@
-
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import img1 from './images/rentacar.png'
-import img2 from './images/cu.jpg'
+import img1 from './images/turisticka_agencija1.jpg'; // Slike vezane za turističku agenciju
+import img2 from './images/turisticka_agencija2.avif';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useMainContext } from '../context/main-context'
+import { useMainContext } from '../context/main-context';
+
+
+import '../components/UI/About.css';
 const About = () => {
+  const [info, setInfo] = useState('');
+  const { user } = useMainContext();
 
-    const [info, setInfo] = useState('');
-    const { user } = useMainContext();
-
-    
-    useEffect(()=>
-    {
-      
-      const getInfo = async () =>
-    {
+  useEffect(() => {
+    const getInfo = async () => {
       await axios.get('http://edinak1-001-site1.ftempurl.com/api/Info')
-      .then(res=>setInfo(res.data))
-    }
-       getInfo()
+        .then(res => setInfo(res.data));
+    };
+    getInfo();
+  }, []);
 
-    },[])
-    console.log(info)
-    return ( 
-        <div className="aboutus" style={{alignItems:"center"}}>
-        <h1 style={{textAlign:"center", margin:"50px"}}>Welcome To Our Profile  <br></br>
-    Learn more about Car2Go Rental </h1>
-    <div className='first'><img  src={img1}  alt="" />
-    <div className='paragraf1'>
-      <b>Car2Go rental</b> founded in {info && info.yearOfEstablishment} can accommodate your vehicle needs,
-       offering all types of cars, scooters and ATV’s in Paros and Antiparos areas.
-        For over {info.currentYear} years we are known for our superior customer service,
-         our new and well-maintained vehicles and the variety and quality
-          of extra services we offer at the lowest possible cost.
+  console.log(info);
+
+  return (
+    <div className="about-us-container" style={{ alignItems: "center" }}>
+      <h1 style={{ textAlign: "center", margin: "50px" }}>
+        Dobrodošli na naš profil
+        <br />
+        Saznajte više o našoj turističkoj agenciji
+      </h1>
+      
+      <div className='about-us-section'>
+        <img src={img1} alt="Turistička agencija" />
+        <div className='about-us-paragraph'>
+          <b>Naša turistička agencija</b> osnovana {info && info.yearOfEstablishment}. godine
+          može zadovoljiti sve vaše potrebe za putovanjima, nudeći razne aranžmane širom sveta.
+          Već više od {info.currentYear} godina poznati smo po izvanrednoj usluzi,
+          našim dobro organizovanim turama i kvalitetu dodatnih usluga koje nudimo
+          po najpovoljnijim cenama.
+        </div>
       </div>
-    </div>
 
-    <div className="second">
-      <h1 style={{textAlign:"center", margin:"10px", marginTop:"20px"}}>Your safety first!</h1>
-      <p>Service Stations are found allover Paros and Antiparos through number of specialized
-         partner tour agencies and hotels. We strive to be always on time and provide our services 
-         allover both islands at the shortest possible waiting time for you.
-          We drop off and collect the vehicle of your choice at any point in Paros. 
-          We do not charge delivery or pickup fees anywhere in Paros, including Paros Airport, 
-          Port of Paros and main areas such as Parikia, Naousa, Lefkes, Aliki and many many more.
-           We also deliver and pick-up for free at any hotel in these areas.</p>
-    </div>
-
-    <div className='chooseus'>
-      <div className='paragraf2'>
-        <h3 style={{margin:"15px"}}>Why choose us?</h3>
-        <p> &#8226; Economy cars (small, versatile, fuel-efficient, easy to drive everyday cars) </p>
-        <p> &#8226;Mid-size hatchbacks (the ideal choice for more than two people)</p>
-            <p>&#8226;Automatic and Hybrid-automatic cars (Fuel efficient, smart, easy to drive smart cars with plenty of space)</p> 
-           <p> &#8226; People carriers (7-seater and 9-seater minibus options, so the whole pack can travel together) </p>
-
+      <div className="safety-section">
+        <h1 style={{ textAlign: "center", margin: "10px", marginTop: "20px" }}>Vaša sigurnost na prvom mestu!</h1>
+        <p>
+          Naše agencije su prisutne u brojnim mestima, kroz mrežu partnera i hotela.
+          Trudimo se da uvek budemo tačni i pružimo naše usluge u najkraćem mogućem roku.
+          Nudimo dostavu i preuzimanje putnih aranžmana na bilo kojoj lokaciji,
+          bez dodatnih troškova, uključujući aerodrome, luke i glavna turistička mesta.
+        </p>
       </div>
-      <img  alt="" src={img2} />
-    </div>
-    {user && user.role === 'Admin' ?<div style={{textAlign:"center"}}><Link to='/change-info'><button style={{width:"180px", padding:"1rem", marginBottom:"1rem"}}>Update informations</button></Link></div> : ''}
-    
-    
-  </div>
-);
 
-     
-}
- 
+      <div className='why-choose-us'>
+        <div className='why-choose-us-paragraph'>
+          <h3 style={{ margin: "15px" }}>Zašto izabrati nas?</h3>
+          <p> &#8226; Ekonomični aranžmani (povoljni, svestrani, lako dostupni)</p>
+          <p> &#8226; Porodični paketi (savršeni za veće grupe)</p>
+          <p> &#8226; Luksuzni aranžmani (za one koji žele vrhunski komfor)</p>
+          <p> &#8226; Posebni aranžmani (personalizovane ture i putovanja)</p>
+        </div>
+        <img src={img2} alt="Turistički aranžmani" />
+      </div>
+
+      {user && user.role === 'Admin' ? (
+        <div style={{ textAlign: "center" }}>
+          <Link to='/change-info'>
+            <button className='buttonzaabout' style={{ width: "180px", padding: "1rem", marginBottom: "1rem" }}>Ažuriraj informacije</button>
+          </Link>
+        </div>
+      ) : ''}
+    </div>
+  );
+};
+
 export default About;

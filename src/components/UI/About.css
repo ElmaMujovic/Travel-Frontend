@@ -1,0 +1,166 @@
+/* Osnovni stilovi */
+
+.about-us-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+    background-color: #f9f9f9;
+    font-family: 'Merriweather', serif;
+    color: #2c3e50;
+}
+
+.about-us-container h1 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #2c3e50;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.about-us-section, .why-choose-us {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.about-us-section:hover, .why-choose-us:hover {
+    transform: translateY(-5px);
+}
+
+.about-us-section img, .why-choose-us img {
+    width: 50%;
+    height: auto;
+}
+
+.about-us-section img {
+    border-right: 5px solid #e1e1e1;
+}
+
+.why-choose-us img {
+    border-left: 5px solid #e1e1e1;
+}
+
+.about-us-paragraph, .why-choose-us-paragraph {
+    padding: 2.5rem;
+    color: #555;
+    font-size: 1.2rem;
+    line-height: 1.9;
+}
+
+.safety-section {
+    margin: 2.5rem 0;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 2.5rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+}
+
+.safety-section h1 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.safety-section p {
+    color: #555;
+    font-size: 1.2rem;
+    line-height: 1.9;
+}
+
+.buttonzaabout {
+    background-color: #34495e;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-family: 'Merriweather', serif;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttonzaabout:hover {
+    background-color: #2c3e50;
+    transform: scale(1.05);
+}
+
+/* Responzivni stilovi */
+
+@media (max-width: 768px) {
+    .about-us-section, .why-choose-us {
+        flex-direction: column;
+    }
+
+    .about-us-section img, .why-choose-us img {
+        width: 100%;
+        border-right: none;
+        border-left: none;
+        margin-bottom: 1rem;
+    }
+
+    .about-us-paragraph, .why-choose-us-paragraph {
+        padding: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .safety-section {
+        padding: 1.5rem;
+    }
+
+    .safety-section h1 {
+        font-size: 2rem;
+    }
+
+    .safety-section p {
+        font-size: 1rem;
+    }
+
+    .buttonzaabout {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-us-container {
+        padding: 2rem;
+    }
+
+    .about-us-container h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-us-paragraph, .why-choose-us-paragraph {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .safety-section {
+        padding: 1rem;
+    }
+
+    .safety-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .safety-section p {
+        font-size: 0.9rem;
+    }
+
+    .buttonzaabout {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

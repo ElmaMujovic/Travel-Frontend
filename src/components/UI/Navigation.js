@@ -29,7 +29,7 @@ const Navigation = () => {
                 <Link to='/contact'>Kontakt</Link>
                 {user && (user.role === 'User' || user.role === 'Moderator') ? <Link to="/fleet">Fleet</Link> : ""}
 
-                {user && user.role === 'Moderator'? <Link to="/create-car">Create car</Link>:""}
+                {user && user.role === 'Moderator'? <Link to="/create-destination">Kreiraj destinaciju</Link>:""}
                 {user && user.role === 'Admin'? <Link to="/create-package">Kreiraj paket</Link>:""}
                 {user && user.role === 'Admin'? <Link to="/create-package-destinacija">Destinacije paketa</Link>:""}
                 {user && user.role === 'Admin'? <Link to="/create-list">Kreiraj listu</Link>:""}

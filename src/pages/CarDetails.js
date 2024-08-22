@@ -27,6 +27,7 @@ const CarDetails = () => {
     const [favAd, setFavsAd] = useState(null)
     const date = new Date().toLocaleDateString();
     const [discount, setDiscount] = useState({});
+    const [isFavourite, setIsFavourite] = useState(false);
 
     const DeleteCar = async (e) => {
         e.preventDefault();
@@ -86,28 +87,32 @@ const CarDetails = () => {
         }
        
     }
+    const toggleFavourite = async () => {
+        if (isFavourite) {
+            await removeAdFromFavourite();
+        } else {
+            await addAdToFavourites();
+        }
+        setIsFavourite(!isFavourite); // Menjanje stanja omiljenih
+    };
+   
 
     // const removeAdFromFavourite = async () => {
     //     await axios.delete(`http://edinak1-001-site1.ftempurl.com/api/User/remove-favorite/${favAd.id}`)
     //         .then(res => console.log("okej"))
     //         await fetchFavouritesCar();
     // }
+
     const removeAdFromFavourite = async () => {
-       await axios.delete('https://localhost:7016/KorisnikDestinacija/api', {
-            data: {
-              korisnikId: user.user.id,  
-              destinacijaId: id  
-            }
-          })
-          .then(response => {
-            console.log('Lajk uspešno obrisan:', response.data);
-            console.log(id);
-          })
-          .catch(error => {
-            console.error('Greška prilikom brisanja lajka:', error);
-          });
-      };
-      
+        try {
+            await axios.delete(`https://localhost:7016/KorisnikDestinacija/api/${id}`);
+
+            setFavsAd(false); // Ažuriraj stanje nakon uspešnog uklanjanja
+            await fetchFavouritesCar(); // Ponovo učitaj omiljene destinacije
+        } catch (e) {
+            console.log("Greška prilikom uklanjanja iz omiljenih", e);
+        }
+    };
       
 
 
@@ -116,18 +121,21 @@ const CarDetails = () => {
             await axios.post('https://localhost:7016/KorisnikDestinacija/api', {
                 korisnikId: user.user.id,
                 destinacijaId: id
-            })
+            });
 
-            await fetchFavouritesCar();
+            setFavsAd(true); // Ažuriraj stanje nakon uspešnog dodavanja
+            
         } catch (e) {
-            console.log(e);
+            console.log("Greška prilikom dodavanja u omiljene", e);
         }
-    }
+    };
 
     const getComments = async () => {
         try {
-            const response = await axios.get(`http://edinak1-001-site1.ftempurl.com/api/Comment/comments/${id}`)
+            const response = await axios.get(`https://localhost:7016/api/Komentar/comments/${id}`)
+            
             setComment(response.data)
+            console.log(comment)
         } catch (e) {
             console.log(e)
         }
@@ -137,34 +145,38 @@ const CarDetails = () => {
    
 
     useEffect(() => {
-        axios.get(`https://localhost:7016/api/Destinacija/${id}`)
-            .then(res => setDestination(res.data));
-        try {
-            axios.get(`http://edinak1-001-site1.ftempurl.com/api/Comment/comments/${id}`)
-                .then(res => setComment(res.data));
-        } catch (e) {
-            console.log(e);
-        }
-        const handleCheckFalse = async () => {
+        const fetchData = async () => {
+            try {
+                // Fetch destination data
+                const destResponse = await axios.get(`https://localhost:7016/api/Destinacija/${id}`);
+                setDestination(destResponse.data);
+                console.log("Destination data:", destResponse.data);
+                
+                // Fetch comments data
+                const commentsResponse = await axios.get(`https://localhost:7016/api/Komentar/comments/${id}`);
+                setComment(commentsResponse.data);
+                console.log("Comments data:", commentsResponse.data);
+                
+            } catch (e) {
+                console.error("Error fetching data:", e);
+            }
+    
+            // Check favorites
             try {
                 await fetchFavouritesCar();
             } catch (e) {
-                console.log(e)
+                console.error("Error fetching favorites:", e);
             }
-        }
-
-        if (user) {
-           
-
-        }
-        handleCheckFalse();
-
-    }, [])
+        };
+    
+        fetchData();
+    }, [id]); // Ostavlja samo 'id' kao zavisnost
+    
 
 
     //delete
     async function deleteComment(id) {
-        await axios.delete(`http://edinak1-001-site1.ftempurl.com/api/Comment/delete-comment/${id}`)
+        await axios.delete(`https://localhost:7016/api/Komentar/delete-comment/${id}`)
             .then(res => console.log("okej"))
     }
 
@@ -173,12 +185,12 @@ const CarDetails = () => {
         e.preventDefault();
 
         try {
-            await axios.post("http://edinak1-001-site1.ftempurl.com/api/Comment",
+            await axios.post("https://localhost:7016/api/Komentar",
                 {
-                    carId: id,
-                    userId: user.user.id,
-                    comment: text,
-                    date: date
+                    DestinacijaId: id,
+                    KorisnikId: user.user.id,
+                    Tekst: text,
+                    Datum: date
                 })
         } catch (e) {
             console.log(e);
@@ -211,8 +223,7 @@ const CarDetails = () => {
         
     }
 
-  
-
+   
     const manageComments = async (id) => {
         await deleteComment(id)
         await getComments()
@@ -240,60 +251,34 @@ const CarDetails = () => {
                     </div>
                     <div style={{ width: "80%", height: "2px", margin: "auto", backgroundColor: "rgb(199, 209, 245)" }}></div>
                     <div className="feature" >
-                        {/* <div className="osobine" style={{ width: "500px" }}>
-                            <div className="addinf"><h2>Additional information</h2></div>
-                            <table style={{ width: "1000px", marginLeft: "15rem", marginBottom: "5rem" }} className="feature">
-                                <tbody>
-                                    <tr>
-                                        <td><img src={carimg} alt="" /><b>Class:</b> Impact</td>
-                                        <td><img src={gearbox} alt="" /><b>Gearbox:</b> {car.gearbox}</td>
-                                        <td><img src={fuel} alt="" /><b>Fuel usage:</b> 39-47 MPG</td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src={statistic} alt="" /><b>Engine capacity:</b> {car.engine}</td>
-                                        <td><img src={door} alt="" /><b>Doors:</b> {car.doors}</td>
-                                        <td><img src={mileage} alt="" /><b>Mileage:</b> Unlimited</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> */}
-                        {/* <div className="include">
-                            <h2 className="addinf" >Our prices include</h2><br />
-                            <table style={{ width: "1000px", marginLeft: "15rem", marginBottom: "5rem" }} className="feature">
-                                <tbody>
-                                    <tr>
-                                        <td>&#10003;TPI Insurance</td>
-                                        <td>&#10003;Unlimited Kilometres</td>
-                                        <td>&#10003;Delivery & Pick-up</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&#10003;1st Child seat</td>
-                                        <td>&#10003;24/7 roadside assistance</td>
-                                        <td>&#10003;Electric Windows</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div> */}
+                       
                         <div style={{ display: "flex", marginLeft: "13rem" }} className="hearts">
                             <h2 style={{ marginBottom: "2rem" }}>Add to favorite</h2>
                             {/* <RiHeart3Fill className="heart" /> */}
-                            {!favAd && <button onClick={addAdToFavourites}><AiOutlineHeart /></button>}
-                            {favAd && <button onClick={removeAdFromFavourite}><AiFillHeart /></button>}
-
+                             {!favAd && <button onClick={addAdToFavourites}><AiOutlineHeart  style={{ color: "black", fontSize: "24px" }}  /></button>}
+                            {favAd && <button onClick={removeAdFromFavourite}><AiFillHeart style={{ color: "red", fontSize: "24px" }} /></button>} 
+                           
                         </div>
                         <div className="add-comment">
                             <h2>Comments</h2> <br />
+                            
+                            
+                          
                             <div className="add-comment com">
-                                {comment.map((com, id) => {
+                            {Array.isArray(comment) ? (
+                                comment.map((com, id) => {
                                     return (
                                         <div className="add-comment del" key={id}>
-                                            <CommentCard time={com.date} name={com.user.firstName} surname={com.user.lastName} text={com.comment} key={com.id} />
-                                            {user && user.role === 'Moderator' ? <button onClick={manageComments.bind(this, com.id)} key={id} >Delete</button> : ""}
-                                        </div>)
+                                        <CommentCard time={com.datum} name={com.korisnikIme} surname= {com.koristnikPrezime}text={com.tekst} key={com.id} />
+                                        {user && user.role === 'Moderator' ? <button onClick={manageComments.bind(this, com.id)} key={id} >Delete</button> : ""}
+                                    </div>
+                                    );
                                 })
-                                }
-                            </div>
+                            ) : (
+                                <p>Nema komentara za prikazivanje.</p>
+                            )}
+                        </div>
+
                             <h2>Add comments</h2>
                             <textarea className="comment" id="" cols="40" rows="5" onChange={(e) => setText(e.target.value)} value={text}></textarea><br />
                             <button className="add-comm" onClick={handlerSubmit}>Send</button>

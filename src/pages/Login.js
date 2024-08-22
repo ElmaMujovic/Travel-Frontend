@@ -6,7 +6,7 @@ import img from './images/LoginImg.svg';
 import jwt_decode from "jwt-decode";
 import showPwdImg from './images/show-password.svg';
 import hidePwdImg from './images/hide-password.svg';
-
+import '../components/UI/Login.css';
 /* eslint-disable */
 /*global google*/
 
@@ -89,41 +89,42 @@ const Login = () => {
 
     return (
         <div className='page login-page'>
-            <div className='login-card'>
-                <div className='login-card image'><img src={img} alt="" /></div>
+            <div className='auth-card'>
+                {/* <div className='auth-card image'><img src={img} alt="" /></div> */}
                 <form onSubmit={onSubmitHandler}>
-                    <div className='header'><h2>Wellcome back</h2>
-                    </div>
-
+                    <div className='header'><h2>Dobrodošli nazad</h2></div>
+    
                     <div className='form-control'>
                         <label>Email</label>
                         <input type='email' onChange={(e) => setEmail(e.target.value)} />
                     </div>
+    
                     <div className='form-control'>
-                        <label>Password</label>
+                        <label>Lozinka</label>
                         <div className='pwd-container'>
-                        <input type={isRevealPwd? "text" : "password"} onChange={(e) => setPassword(e.target.value)} />
-                        <img
+                            <input type={isRevealPwd ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} />
+                            <img
                                 alt=''
                                 title={isRevealPwd ? "Hide password" : "Show password"}
                                 src={isRevealPwd ? hidePwdImg : showPwdImg}
                                 onClick={() => setIsRevealPwd(prevState => !prevState)}
-                               
-                                />
-                            </div>
-                        <Link to='/forgot-password' style={{ textDecoration: "none", color: "black" }}><div style={{fontSize:"11px", marginTop:"4px"}}>Forgot your password?</div></Link>
+                            />
+                        </div>
+                        {/* <Link to='/forgot-password' className='form-control-link'>Forgot your password?</Link> */}
                     </div>
-                    {error && <div style={{fontSize:"10px", marginLeft:"10px"}}>{error}</div>}
+    
+                    {error && <div style={{ fontSize: "10px", marginLeft: "10px" }}>{error}</div>}
+    
                     <div className='form-control-button'>
                         <input type='submit' value='Login' />
-                        <p>Don't have an account? Sign up <Link to='/register' style={{ textDecoration: "none", color: "black" }}>here!</Link></p>
+                        <p>Nemate nalog? Prijavite se
+                        <Link to='/register'> ovde!</Link></p>
                     </div>
-                    {/* <div id="signInDiv" style={{width: "50px", height: "50px", marginLeft:"80px"}}></div> */}
-
                 </form>
             </div>
         </div>
-    )
+    );
+    
 }
 
 export default Login

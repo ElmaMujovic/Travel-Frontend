@@ -6,7 +6,7 @@ const Card = (props) => {
 
     return ( 
         <div className='car-preview'key={id}>
-           
+
         <div className='car'>
            <img src={`https://localhost:7016/images/` + image} alt=""/>
         </div>
@@ -20,5 +20,5 @@ const Card = (props) => {
         </div>
      );
 }
- 
+
 export default Card;

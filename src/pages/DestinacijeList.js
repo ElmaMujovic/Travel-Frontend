@@ -3,13 +3,12 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import '../components/UI/DestinacijePaketa.css';
 import '../components/UI/DestinacijeLista.css';
+import { useMainContext } from '../context/main-context';  // Ispravna putanja za uvoz
 
-
-
-///PRIKAZ PRVIH DESTINACIJJA 
 const DestinacijeList = () => {
   const { paketId } = useParams();
   const [destinations, setDestinations] = useState([]);
+  const { user } = useMainContext();  // Preuzmi korisnički kontekst
 
   useEffect(() => {
     if (paketId) {
@@ -47,15 +46,18 @@ const DestinacijeList = () => {
               <div className="overlay">
                 <p className="destinacija-description">{destination.opis}</p>
                 <Link to={`/destinacija-detalji/${destination.id}`}>
-    <button className="kompletna-ponuda-button">Kompletna ponuda</button>
-</Link>
-
+                  <button className="kompletna-ponuda-button">Kompletna ponuda</button>
+                </Link>
               </div>
               <div className="action-buttons">
-                <button onClick={() => handleDelete(destination.id)}>Obriši</button>
-                <Link to={`/uredi-destinaciju-lista/${destination.id}`}>
-                  <button>Uredi</button>
-                </Link>
+                {user && user.role === 'Admin' && (
+                  <>
+                    <button onClick={() => handleDelete(destination.id)}>Obriši</button>
+                    <Link to={`/uredi-destinaciju-lista/${destination.id}`}>
+                      <button>Uredi</button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           ))
@@ -64,7 +66,7 @@ const DestinacijeList = () => {
         )}
       </div>
     </div>
-   );
+  );
 };
 
 export default DestinacijeList;
