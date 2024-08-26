@@ -6,6 +6,7 @@ import { useMainContext } from '../context/main-context';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import '../components/UI/profile.css';
+import CardNew from "../components/UI/CardNew";
 const Profile = () => {
     const{user, onSetUserHandler} = useMainContext();
    const[favCars, setFavCars] = useState([]);
@@ -99,12 +100,22 @@ const Profile = () => {
             ) : (
                 favCars.map((car) => (
                     <div className="favorite-card" key={car.id}>
-                        <Card 
+                     
+                     
+<Link to={`/car-details/${car.id}`} key={car.id} className="fleet-page-card-link">
+                        <CardNew
+
                             id={car.id} 
                             imagePath={`${car.imagePath}`} 
+                            opis = {car.opis}
                             naziv={car.naziv} 
                             cena={car.cena} 
                         />
+
+  </Link>
+
+
+                  
                     </div>
                 ))
             )}

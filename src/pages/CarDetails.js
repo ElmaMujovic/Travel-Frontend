@@ -29,6 +29,7 @@ const CarDetails = () => {
     const [discount, setDiscount] = useState({});
     const [isFavourite, setIsFavourite] = useState(false);
 
+    const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
     const DeleteCar = async (e) => {
         e.preventDefault();
         await axios.delete(`https://localhost:7016/api/Destinacija/${destination.id}`);
@@ -66,27 +67,24 @@ const CarDetails = () => {
 
     const fetchFavouritesCar = async () => {
         try {
-              
-            await axios.get('https://localhost:7016/KorisnikDestinacija')
-            .then(res =>{
-                 setFavorites(res.data)
-                 const adIndex = res.data.filter(x => x.korisnikId == 1)
-                 console.log(res.data[0].korisnikId);
-                 if (adIndex !== -1) {
-                     setFavsAd(true)
-                 } else {
-                     setFavsAd(null)
-                 }
-                })
+            const res = await axios.get('https://localhost:7016/KorisnikDestinacija');
+            setFavorites(res.data);
+            console.log("pozivvvvv")
+            console.log(userFromLocalStorage.user.id)
+            const adIndex = res.data.find(x => x.destinacijaId == id && x.korisnikId == userFromLocalStorage.user.id);
+            console.log("Addddindex", adIndex)
+            if (adIndex) {
 
-          
-
-
+                setIsFavourite(true);
+                setFavsAd(true)
+            } else {
+                setIsFavourite(false);
+            }
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
-       
-    }
+    };
+    
     const toggleFavourite = async () => {
         if (isFavourite) {
             await removeAdFromFavourite();
@@ -170,7 +168,7 @@ const CarDetails = () => {
         };
     
         fetchData();
-    }, [id]); // Ostavlja samo 'id' kao zavisnost
+    }, []); // Ostavlja samo 'id' kao zavisnost
     
 
 
@@ -216,7 +214,7 @@ const CarDetails = () => {
                             destinacijaId: destination.id
                         })
                     setDiscount(response.data);
-                    alert("You have successfully reserved a destination");
+                    alert("Uspešno ste rezervisali destinaciju");
             } catch (e) {
                 console.log(e);
             }
@@ -240,11 +238,11 @@ const CarDetails = () => {
                         {destination.imagePath && <img src={`https://localhost:7016/images/${destination.imagePath}`} style={{ marginLeft: "5rem" }} alt="" />}
                         <div className="car-details">
                             <div className="form-reserve">
-                                <h1>Model Features</h1>
+                                <h1>Karakteristike destinacije</h1>
                         
-                                {user && <button className="car-details btn" onClick={Reserve}>Reserve</button>}
-                                {user && user.role === 'Admin' ? <button className="car-details btn" onClick={UpdateCar} >Update</button> : ''}
-                                {user && user.role === 'Admin' ? <button className="car-details btn" onClick={submit} >Delete</button> : ''}
+                                {user && <button className="car-details btn" onClick={Reserve}>Rezerviši</button>}
+                                {user && user.role === 'Admin' ? <button className="car-details btn" onClick={UpdateCar} >Uredi</button> : ''}
+                                {user && user.role === 'Admin' ? <button className="car-details btn" onClick={submit} >Obriši</button> : ''}
                             </div>
 
                         </div>
@@ -253,14 +251,14 @@ const CarDetails = () => {
                     <div className="feature" >
                        
                         <div style={{ display: "flex", marginLeft: "13rem" }} className="hearts">
-                            <h2 style={{ marginBottom: "2rem" }}>Add to favorite</h2>
+                            <h2 style={{ marginBottom: "2rem" }}>Dodaj u omiljne</h2>
                             {/* <RiHeart3Fill className="heart" /> */}
                              {!favAd && <button onClick={addAdToFavourites}><AiOutlineHeart  style={{ color: "black", fontSize: "24px" }}  /></button>}
                             {favAd && <button onClick={removeAdFromFavourite}><AiFillHeart style={{ color: "red", fontSize: "24px" }} /></button>} 
                            
                         </div>
                         <div className="add-comment">
-                            <h2>Comments</h2> <br />
+                            <h2>Komentari</h2> <br />
                             
                             
                           
@@ -270,7 +268,7 @@ const CarDetails = () => {
                                     return (
                                         <div className="add-comment del" key={id}>
                                         <CommentCard time={com.datum} name={com.korisnikIme} surname= {com.koristnikPrezime}text={com.tekst} key={com.id} />
-                                        {user && user.role === 'Moderator' ? <button onClick={manageComments.bind(this, com.id)} key={id} >Delete</button> : ""}
+                                        {user && user.role === 'Moderator' ? <button onClick={manageComments.bind(this, com.id)} key={id} >Obrisi</button> : ""}
                                     </div>
                                     );
                                 })
@@ -279,9 +277,9 @@ const CarDetails = () => {
                             )}
                         </div>
 
-                            <h2>Add comments</h2>
+                            <h2>Dodaj komentar</h2>
                             <textarea className="comment" id="" cols="40" rows="5" onChange={(e) => setText(e.target.value)} value={text}></textarea><br />
-                            <button className="add-comm" onClick={handlerSubmit}>Send</button>
+                            <button className="add-comm" onClick={handlerSubmit}>Posalji</button>
                         </div>
                     </div>
                 </div>

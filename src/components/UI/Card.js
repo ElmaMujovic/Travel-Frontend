@@ -9,12 +9,13 @@ const Card = (props) => {
 
         <div className='car'>
            <img src={`https://localhost:7016/images/` + image} alt=""/>
+       
         </div>
         <p>{name}</p>
         {/* <p>{description}</p> */}
         <div className='line'></div>
         <div className='price'>
-            <p>Day from</p>
+            <p></p>
             <p>${price}</p>
         </div>
         </div>

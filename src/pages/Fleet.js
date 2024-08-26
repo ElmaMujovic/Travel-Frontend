@@ -67,7 +67,7 @@ const Fleet = () => {
                     <div className="fleet-page-dropdown-content">
                         <div className="fleet-page-row">
                             <div className="fleet-page-column">
-                                <h3>Price</h3>
+                                <h3>Cena</h3>
                                 <input
                                     type="range"
                                     onInput={handleInput}
@@ -75,8 +75,9 @@ const Fleet = () => {
                                     max="100"
                                     className="fleet-page-range"
                                 />
-                                <h4 className="fleet-page-price">Price: {price}</h4>
-                                <button className="fleet-page-btnApply" onClick={() => FilterByPrice(price)}>Apply</button>
+                                <h4 className="fleet-page-price">Cena: {price}</h4>
+                                <button className="fleet-page-btnApply" onClick={() => FilterByPrice(price)}>Prijavite se
+                                </button>
                             </div>
                         </div>
                     </div>
