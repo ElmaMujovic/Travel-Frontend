@@ -32,6 +32,7 @@ import DestinacijaDetalji from './pages/DestinacijaDetalji';
 import CustomList from './pages/List'; // Dodaj ovu liniju
 import KreirajDestinciju from './pages/KreirajDestinciju';
 import EditDestination from './pages/EditDestination'; // ili putanja do vašeg EditDestination fajla
+import CreateHotel from './pages/Hotel';
 /* eslint-disable */
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
           <Route path="/create-list" element={<CustomList />} />
           <Route path="/destinacija-detalji/:destinacijaId" element={<DestinacijaDetalji />} />
           <Route path="/edit-destination/:id" element={<EditDestination />} />
+          <Route path="/hotel" element={<CreateHotel />} />
 
           
 

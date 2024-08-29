@@ -2,49 +2,48 @@
     position: relative;
     text-align: center;
     color: #333;
-    padding: 20px; /* Povećan unutrašnji razmak */
-    border-radius: 12px; /* Zaobljenje ivica */
-    /* background-color: #fff; Pozadina oko sadržaja */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Više senki za dodatni efekat */
-    max-width: 800px; /* Maksimalna širina div-a */
-    margin: 20px auto; /* Centriraj div na stranici */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    left: -120px;
 }
 
 .destinacija-image-wrapper {
     position: relative;
     display: inline-block;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8); /* Senka oko slike */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
-    max-width: 700px; /* Povećana širina slike */
-    margin: 0 auto; /* Centriraj sliku */
-    background-color: transparent; /* Pozadina unutar wrapper-a */
-    border: none; /* Ukloni border */
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: transparent;
+    border: none;
 }
 
 .destinacija-image {
     width: 100%;
     height: auto;
-    border-radius: 10px; /* Lagano zaobljenje ivica */
-    display: block; /* Ukloni dodatne margine oko slike */
-    margin: 0; /* Ukloni marginu */
-    border: none; /* Ukloni border */
+    border-radius: 10px;
+    display: block;
+    margin: 0;
+    border: none;
 }
-
 
 .destinacija-icons {
     position: absolute;
     top: 10px;
     right: 10px;
     display: flex;
-    gap: 8px; /* Razmak između ikona */
+    gap: 8px;
     color: white;
-    margin-right: 30px; /* Pomeri sve ikone levo za 30px */
+    margin-right: 30px;
 }
 
 .icon-container {
-    position: relative; /* Ovo omogućava prikaz tooltipa ispod ikone */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,19 +51,19 @@
 
 .tooltip {
     visibility: hidden;
-    width: 100px; /* Širina tooltipa, može se prilagoditi */
-    background-color: rgba(0, 0, 0, 0.7); /* Pozadina tooltipa */
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     text-align: center;
     border-radius: 5px;
     padding: 5px;
     position: absolute;
-    bottom: -30px; /* Pozicija tooltipa ispod ikone */
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
-    transition: opacity 0.3s; /* Efekat prelaska */
-    font-size: 0.8rem; /* Manja veličina fonta */
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
 }
 
 .icon-container:hover .tooltip {
@@ -74,13 +73,13 @@
 
 .destinacija-icons > * {
     background-color: rgba(0, 0, 0, 0.6);
-    padding: 6px; /* Smanjen padding za manje ikone */
+    padding: 6px;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px; /* Smanjena širina ikona */
-    height: 24px; /* Smanjena visina ikona */
+    width: 24px;
+    height: 24px;
 }
 
 .price-info {
@@ -88,74 +87,248 @@
     bottom: 10px;
     right: 10px;
     display: flex;
-    gap: 15px; /* Povećan razmak između cena */
+    gap: 15px;
 }
 
 .price-info .price,
 .price-info .old-price {
-    padding: 10px; /* Veći padding za bolju čitljivost */
-    border-radius: 8px; /* Lagano zaobljenje ivica */
+    padding: 10px;
+    border-radius: 8px;
     color: white;
     font-weight: bold;
-    text-align: center; /* Centriraj tekst unutar div-a */
+    text-align: center;
     display: flex;
-    align-items: center; /* Vertikalno poravnanje teksta */
-    justify-content: center; /* Horizontalno poravnanje teksta */
-    min-width: 100px; /* Minimalna širina div-a */
-    font-size: 1.2rem; /* Povećana veličina fonta */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Senka za bolju vidljivost */
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .price-info .price {
-    background-color: #28a745; /* Boja za novu cenu */
+    background-color: #28a745;
 }
 
 .price-info .old-price {
-    background-color: #dc3545; /* Boja za staru cenu */
+    background-color: #dc3545;
     text-decoration: line-through;
 }
 
 .destinacija-opis {
-    max-width: 700px; /* Širina koja odgovara slici */
-    margin: 20px auto; /* Centriraj opis */
+    max-width: 700px;
+    margin: 20px auto;
     padding: 10px;
-    text-align: center; /* Centriraj tekst unutar div-a */
-    background-color: #f4ececbb; /* Pozadina oko opisa */
-    border: 1px solid #ddd; /* Obavezivanje opisa */
-    border-radius: 10px; /* Zaobljenje ivica */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Senka za dodatni efekat */
+    text-align: center;
+    background-color: #f4ececbb;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.destinacija-actions {
-    margin-top: 20px; /* Razmak iznad dugmadi */
-    text-align: center; /* Centriraj dugmad */
-}
-
-.btn-delete, .btn-edit {
-    padding: 12px 24px; /* Razmak unutar dugmadi */
-    margin: 5px; /* Razmak između dugmadi */
+.rezervacija-button5 {
+    position: absolute;
+    top:   100px;
+    right: -320px;
+    padding: 20px 20px;
+    background-color: #007bff;
+    color: white;
     border: none;
     border-radius: 5px;
-    color: white;
-    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* Dodaj transformaciju za hover efekat */
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.btn-delete {
-    background-color: #dc3545; /* Crvena boja za brisanje */
+.rezervacija-button5:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); /* Povećava dugme za 10% */
 }
 
-.btn-delete:hover {
-    background-color: #c82333; /* Tamnija crvena za hover efekat */
-    transform: scale(1.05); /* Lagano povećanje za hover efekat */
+
+.rezervacija-modal {
+    position: absolute;
+    top: 280px;
+    right: 30px;
+    width: 300px; /* Širina modala može se prilagoditi */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: pulse 2s infinite; /* Dodaje pulsirajući efekt */
+
 }
 
-.btn-edit {
-    background-color: #28a745; /* Zeleno za uređivanje */
+.rezervacija-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.btn-edit:hover {
-    background-color: #218838; /* Tamnija zelena za hover efekat */
-    transform: scale(1.05); /* Lagano povećanje za hover efekat */
+.rezervacija-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Razmak između polja */
+   
+}
+
+.rezervacija-form input,
+.rezervacija-form select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.rezervacija-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    flex: 1; /* Oba dugmeta će zauzimati jednaku širinu */
+    margin-right: 10px; /* Razmak između dugmadi */
+}
+
+.rezervacija-button:last-child {
+    margin-right: 0; /* Uklanja margine za poslednje dugme */
+}
+
+.rezervacija-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Lagano povećanje na hover */
+}
+
+.cancel-button {
+    background-color: #dc3545;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(0, 123, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+}
+
+
+
+@media (max-width: 1200px) {
+    .destinacija-detalji {
+        left: -60px;
+        margin-bottom: 500px;
+    }
+
+    .rezervacija-button5 {
+        right: 400px;
+        top: 670px;
+        padding: 10px 5px;
+    }
+
+    .rezervacija-modal {
+        right: 250px;
+        width: 60%;
+        top: 850px;
+    }
+}
+
+@media (max-width: 992px) {
+    .destinacija-detalji {
+        left: 0;
+        max-width: 100%;
+        margin-bottom: 500px;
+    }
+
+    .destinacija-image-wrapper {
+        max-width: 100%;
+    }
+
+    .rezervacija-button5 {
+        position: relative;
+        right: 0;
+        top: 20px;
+        margin: 10px auto;
+        display: block;
+        width: fit-content;
+        font-size: 16px;
+    }
+
+    .rezervacija-modal {
+        right: 5px;
+        width: 90%;
+        top: 1050px;
+
+        
+
+    }
+}
+
+@media (max-width: 768px) {
+    .destinacija-detalji {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .rezervacija-button5 {
+        right: 0;
+        top: 20px;
+        margin: 10px auto;
+        width: fit-content;
+        font-size: 16px;
+        padding: 15px 20px;
+    }
+
+    .rezervacija-modal {
+        top:850px;
+        right: 10px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 576px) {
+    .destinacija-detalji {
+        padding: 10px;
+        max-width: 95%;
+        margin-bottom: 550px;
+
+    }
+
+    .destinacija-image-wrapper {
+        max-width: 100%;
+    }
+
+    .rezervacija-button5 {
+        right: 0;
+        top: 20px;
+        margin: 10px auto;
+        width: fit-content;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .rezervacija-modal {
+        top: 800px;
+        right: 5px;
+        width: 90%;
+        padding: 15px;
+    }
+
+    .rezervacija-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .rezervacija-button,
+    .cancel-button {
+        margin-right: 0;
+        padding: 10px 15px;
+        font-size: 14px;
+        flex: 1;
+        
+    }
 }

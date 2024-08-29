@@ -7,10 +7,16 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import '../components/UI/profile.css';
 import CardNew from "../components/UI/CardNew";
+
+import '../components/UI/destinacijadetalji.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSwimmer, faWifi, faTv, faCar, faBus, faStar } from '@fortawesome/free-solid-svg-icons';
 const Profile = () => {
     const{user, onSetUserHandler} = useMainContext();
    const[favCars, setFavCars] = useState([]);
    const navigate = useNavigate();
+   const [rezervacije, setRezervacije] = useState([]);
+
    const DeleteProfile = async(e) =>
    {
         e.preventDefault();
@@ -29,6 +35,17 @@ const Profile = () => {
                console.log(e);
        }
    }
+   const getRezervacije = async () => {
+    try {
+        if (user !== null) {
+            const response = await axios.get(`http://localhost:7016/api/Rezervacija/ByUser/${user.user.id}`);
+            setRezervacije(response.data);
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
    const submit = (e) => {
     confirmAlert({
       title: 'Delete a car',
@@ -47,28 +64,34 @@ const Profile = () => {
   };
    
   
-   useEffect(()=>
-   {
-
-    const getFavoriteCars = async() =>
-    {
-        try{
-            if(user !== null){
-
-            const response = await axios.get(`https://localhost:7016/KorisnikDestinacija/user/destinacije/${user.user.id}`)
-            setFavCars(response.data);}
-            
-             
-        }catch(e)
-        {
-            console.log(e)
+  useEffect(() => {
+    const getFavoriteCars = async () => {
+        try {
+            if (user !== null) {
+                const response = await axios.get(`https://localhost:7016/KorisnikDestinacija/user/destinacije/${user.user.id}`);
+                setFavCars(response.data);
+            }
+        } catch (e) {
+            console.log(e);
         }
-    }
+    };
 
+    const getRezervacije = async () => {
+        try {
+            if (user !== null) {
+                const response = await axios.get(`https://localhost:7016/api/Rezervacija/ByUser/${user.user.id}`);
+                console.log(response.data)
+                setRezervacije(response.data);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     getFavoriteCars();
-    
-   },[user])
+    getRezervacije();
+}, [user]);
+
    
    
    console.log(favCars)
@@ -93,6 +116,8 @@ const Profile = () => {
                 )}
             </div>
         </div>
+        
+
         <h1 className="favorites-title">Moje omiljene destinacije</h1>
         <div className="favorites-container">
             {favCars.length === 0 ? (
@@ -120,7 +145,52 @@ const Profile = () => {
                 ))
             )}
         </div>
+        
+        <h1 className="reservations-title">Moje rezervacije</h1>
+            <div className="reservations-container">
+                {rezervacije.length === 0 ? (
+                    <p>Nema rezervacija</p>
+                ) : (
+                    rezervacije.map((rezervacija) => (
+                        <div className="reservation-card" key={rezervacija.id}>
+                            <div className="destination-image-wrapper">
+                                <img
+                                    src={rezervacija.list.slika.startsWith('/images/') ? `https://localhost:7016${rezervacija.list.slika}` : `https://localhost:7016/images/${rezervacija.list.slika}`}
+                                    alt={rezervacija.list.naziv}
+                                    className="destination-image"
+                                />
+                                <div className="destination-icons">
+                                    {rezervacija.list.imaBazen && <div className="icon-container"><FontAwesomeIcon icon={faSwimmer} /><div className="tooltip">Bazen</div></div>}
+                                    {rezervacija.list.imaWiFi && <div className="icon-container"><FontAwesomeIcon icon={faWifi} /><div className="tooltip">WiFi</div></div>}
+                                    {rezervacija.list.imaTV && <div className="icon-container"><FontAwesomeIcon icon={faTv} /><div className="tooltip">TV</div></div>}
+                                    {rezervacija.list.imaParking && <div className="icon-container"><FontAwesomeIcon icon={faCar} /><div className="tooltip">Parking</div></div>}
+                                    {rezervacija.list.imaPrevoz && <div className="icon-container"><FontAwesomeIcon icon={faBus} /><div className="tooltip">Prevoz</div></div>}
+                                    <div className="icon-container">
+                                        <FontAwesomeIcon icon={faStar} />
+                                        <div className="tooltip">{rezervacija.list.brojZvezdica} zvezdice</div>
+                                    </div>
+                                </div>
+                                <div className="price-info">
+                                    <div className="old-price">{rezervacija.list.staraCena} €</div>
+                                    <div className="price">{rezervacija.list.novaCena} €</div>
+                                </div>
+                            </div>
+                            <div className="reservation-details">
+
+                                <p><strong>Datum rezervacije:</strong> {new Date(rezervacija.datumRezervacije).toLocaleDateString()}</p>
+                                <p><strong>Broj osoba:</strong> {rezervacija.brojOsoba}</p>
+                                <p><strong>Dani:</strong> {rezervacija.dani}</p>
+                                <p><strong>Noći:</strong> {rezervacija.noci}</p>
+                                <p><strong>Soba:</strong> {rezervacija.soba}</p>
+                                <p><strong>Napomena:</strong> {rezervacija.napomena}</p>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
     </div>
+
+    
 );
 }
 

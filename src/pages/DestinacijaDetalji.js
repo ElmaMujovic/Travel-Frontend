@@ -8,10 +8,24 @@ import { useParams } from 'react-router-dom';
 import '../components/UI/destinacijadetalji.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSwimmer, faWifi, faTv, faCar, faBus, faStar } from '@fortawesome/free-solid-svg-icons';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 const DestinacijaDetalji = () => {
     const { destinacijaId } = useParams();
     const [destinacija, setDestinacija] = useState(null);
+    const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
+    console.log('Korisnik iz lokalnog skladišta:', userFromLocalStorage);
+    const [rezervacijaStatus, setRezervacijaStatus] = useState('');
+    const [dani, setDani] = useState('');
+    const [noci, setNoci] = useState('');
+    const [soba, setSoba] = useState('');
+    const [napomena, setNapomena] = useState('');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [brojOsoba, setBrojOsoba] = useState('');
+    const [selectedHotelId, setSelectedHotelId] = useState('');
+    const [hoteli, setHoteli] = useState([]);
 
     useEffect(() => {
         if (destinacijaId) {
@@ -21,8 +35,55 @@ const DestinacijaDetalji = () => {
                 })
                 .catch(err => console.error('Greška prilikom učitavanja detalja destinacije:', err));
         }
+        
+        axios.get('https://localhost:7016/api/Hotel') // Preuzmi listu hotela
+            .then(response => {
+                setHoteli(response.data);
+            })
+            .catch(error => console.error('Greška prilikom učitavanja hotela:', error));
     }, [destinacijaId]);
 
+    const openModal = () => {
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
+    const handleRezervacija = () => {
+        if (!userFromLocalStorage) {
+            setRezervacijaStatus('Morate biti prijavljeni da biste izvršili rezervaciju.');
+            return;
+        }
+
+        const rezervacijaData = {
+            korisnikId: userFromLocalStorage.user.id,
+            listId: destinacija.id,
+            datumRezervacije: new Date(),
+            brojOsoba,
+            dani,
+            noci,
+            soba,
+            napomena,
+            hotelId: selectedHotelId,
+        };
+        console.log('Rezervacija Data:', rezervacijaData);
+
+        axios.post('https://localhost:7016/api/Rezervacija', rezervacijaData)
+        .then(() => {
+            setRezervacijaStatus('Uspešno ste izvršili rezervaciju.');
+            closeModal(); // Zatvaranje modala nakon uspešne rezervacije
+        })
+        .catch(err => {
+            console.error('Greška prilikom rezervacije:', err);
+            if (err.response && err.response.data && err.response.data.message) {
+                setRezervacijaStatus(err.response.data.message); // Prikazivanje specifične greške
+            } else {
+                setRezervacijaStatus('Došlo je do greške prilikom rezervacije.');
+            }
+        });
+    };
     if (!destinacija) return <p>Učitavanje...</p>;
 
     return (
@@ -49,10 +110,85 @@ const DestinacijaDetalji = () => {
                     <div className="old-price">{destinacija.staraCena} €</div>
                     <div className="price">{destinacija.novaCena} €</div>
                 </div>
+                {/* <button onClick={openModal} className="rezervacija-button">
+                Rezerviši
+            </button> */}
+            {rezervacijaStatus && <p className="rezervacija-status">{rezervacijaStatus}</p>}
+
+            {/* Modal */}
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="Forma za rezervaciju"
+                className="rezervacija-modal"
+                overlayClassName="rezervacija-overlay"
+            >
+                <h2>Unesite informacije za rezervaciju</h2>
+                <div className="rezervacija-form">
+                <input
+                        type="text"
+                        placeholder="Broj osoba"
+                        value={brojOsoba}
+                        onChange={(e) => setBrojOsoba(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Broj dana"
+                        value={dani}
+                        onChange={(e) => setDani(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Broj noći"
+                        value={noci}
+                        onChange={(e) => setNoci(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Broj soba"
+                        value={soba}
+                        onChange={(e) => setSoba(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Napomenna"
+                        value={napomena}
+                        onChange={(e) => setNapomena(e.target.value)}
+                        required
+                    />
+                     <select
+                            value={selectedHotelId}
+                            onChange={(e) => setSelectedHotelId(e.target.value)}
+                            required
+                        >
+                            <option value="">Izaberite hotel</option>
+                            {hoteli.map(hotel => (
+                                <option key={hotel.id} value={hotel.id}>
+                                    {hotel.naziv}
+                                </option>
+                            ))}
+                        </select>
+                    
+                </div>
+                <button onClick={handleRezervacija} className="rezervacija-button">
+                    Potvrdi rezervaciju
+                </button>
+                <button onClick={closeModal} className="rezervacija-button cancel-button">
+                    Otkaži
+                </button>
+            </Modal>
             </div>
             <div className="destinacija-opis">
                 <p>{destinacija.opis}</p>
             </div>
+
+            <button onClick={openModal} className="rezervacija-button5">
+                Rezerviši
+            </button>
         </div>
     );
 }

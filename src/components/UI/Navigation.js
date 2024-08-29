@@ -33,6 +33,7 @@ const Navigation = () => {
                 {user && user.role === 'Admin'? <Link to="/create-package">Kreiraj paket</Link>:""}
                 {user && user.role === 'Admin'? <Link to="/create-package-destinacija">Destinacije paketa</Link>:""}
                 {user && user.role === 'Admin'? <Link to="/create-list">Kreiraj listu</Link>:""}
+                <Link to="/hotel">Hotel</Link>
 
 
                 {user &&  <Link to='/profile'>Moj profil</Link>}
