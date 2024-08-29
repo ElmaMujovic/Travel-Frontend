@@ -26,14 +26,15 @@ const Navigation = () => {
                 {user && user.role === 'User'? <Link to="/about">O nama</Link>:""}
                 {!user && <Link to='/login'>Login</Link>}
                 {user && <button onClick={logoutHandler} style={{textDecoration:"none", border:"none", backgroundColor:"rgb(199, 209, 245)", color:"white", marginTop:"10px", fontSize:"15px", marginRight:"6px"}}>Logout</button>}
-                <Link to='/contact'>Kontakt</Link>
-                {user && (user.role === 'User' || user.role === 'Moderator') ? <Link to="/fleet">Fleet</Link> : ""}
+                {/* <Link to='/contact'>Kontakt</Link> */}
+                {user && (user.role === 'User' || user.role === 'Moderator') ? <Link to="/fleet">Destinacije</Link> : ""}
 
                 {user && user.role === 'Moderator'? <Link to="/create-destination">Kreiraj destinaciju</Link>:""}
                 {user && user.role === 'Admin'? <Link to="/create-package">Kreiraj paket</Link>:""}
                 {user && user.role === 'Admin'? <Link to="/create-package-destinacija">Destinacije paketa</Link>:""}
                 {user && user.role === 'Admin'? <Link to="/create-list">Kreiraj listu</Link>:""}
-                <Link to="/hotel">Hotel</Link>
+
+                {user && user.role === 'Admin'? <Link to="/hotel">Hotel</Link>:""}
 
 
                 {user &&  <Link to='/profile'>Moj profil</Link>}

@@ -132,7 +132,7 @@ const Profile = () => {
 
                             id={car.id} 
                             imagePath={`${car.imagePath}`} 
-                            opis = {car.opis}
+                            // opis = {car.opis}
                             naziv={car.naziv} 
                             cena={car.cena} 
                         />
@@ -146,35 +146,39 @@ const Profile = () => {
             )}
         </div>
         
-        <h1 className="reservations-title">Moje rezervacije</h1>
+        <h1 className="reservations-title">Moje rezervacije paketa</h1>
             <div className="reservations-container">
                 {rezervacije.length === 0 ? (
                     <p>Nema rezervacija</p>
                 ) : (
                     rezervacije.map((rezervacija) => (
                         <div className="reservation-card" key={rezervacija.id}>
+
                             <div className="destination-image-wrapper">
                                 <img
                                     src={rezervacija.list.slika.startsWith('/images/') ? `https://localhost:7016${rezervacija.list.slika}` : `https://localhost:7016/images/${rezervacija.list.slika}`}
                                     alt={rezervacija.list.naziv}
                                     className="destination-image"
                                 />
-                                <div className="destination-icons">
+                                {/* <div className="destination-icons">
                                     {rezervacija.list.imaBazen && <div className="icon-container"><FontAwesomeIcon icon={faSwimmer} /><div className="tooltip">Bazen</div></div>}
                                     {rezervacija.list.imaWiFi && <div className="icon-container"><FontAwesomeIcon icon={faWifi} /><div className="tooltip">WiFi</div></div>}
                                     {rezervacija.list.imaTV && <div className="icon-container"><FontAwesomeIcon icon={faTv} /><div className="tooltip">TV</div></div>}
                                     {rezervacija.list.imaParking && <div className="icon-container"><FontAwesomeIcon icon={faCar} /><div className="tooltip">Parking</div></div>}
-                                    {rezervacija.list.imaPrevoz && <div className="icon-container"><FontAwesomeIcon icon={faBus} /><div className="tooltip">Prevoz</div></div>}
-                                    <div className="icon-container">
+                                    {rezervacija.list.imaPrevoz && <div className="icon-container"><FontAwesomeIcon icon={faBus} /><div className="tooltip">Prevoz</div></div>} */}
+                                    {/* <div className="icon-container">
                                         <FontAwesomeIcon icon={faStar} />
                                         <div className="tooltip">{rezervacija.list.brojZvezdica} zvezdice</div>
-                                    </div>
-                                </div>
+                                    </div> */}
+                               
+                               {/* </div> */}
                                 <div className="price-info">
-                                    <div className="old-price">{rezervacija.list.staraCena} €</div>
-                                    <div className="price">{rezervacija.list.novaCena} €</div>
+                                    {/* <div className="old-price">{rezervacija.list.staraCena} €</div> */}
+                                    <div className="pricee">{rezervacija.list.novaCena} €</div>
                                 </div>
                             </div>
+                            <h2 className="destinacija-titlee">{rezervacija.list.naziv}</h2>
+
                             <div className="reservation-details">
 
                                 <p><strong>Datum rezervacije:</strong> {new Date(rezervacija.datumRezervacije).toLocaleDateString()}</p>
