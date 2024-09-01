@@ -16,6 +16,12 @@ html, body {
     flex: 1;
 }
 
+.second-part2{
+    display: flex;
+    align-items: center;
+   
+}
+
 
 ul {
     display: flex;
@@ -45,6 +51,12 @@ ul button
     bottom: 0; /* Samo ako želite da footer bude pri dnu sadržaja */
 
 
+}
+
+.travelapp-text{
+    color: white;
+    font-size: 1rem;
+    margin-right: 1;
 }
 
 
