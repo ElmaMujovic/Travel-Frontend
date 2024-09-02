@@ -1,0 +1,132 @@
+.destinacija-detalji {
+    position: relative;
+    text-align: center;
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.destinacija-image-wrapper {
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: transparent;
+    border: none;
+}
+
+.destinacija-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0;
+    border: none;
+}
+
+.destinacija-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    color: white;
+    margin-right: 30px;
+}
+
+.icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
+}
+
+.icon-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.reserve-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    display: none; /* Forma je inicijalno sakrivena */
+}
+
+.reserve-form.active {
+    display: block; /* Prikazuje se kada se klikne na dugme "Rezerviši" */
+}
+
+.reserve-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.reserve-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.reserve-form input,
+.reserve-form textarea {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.reserve-form textarea {
+    resize: vertical;
+}
+
+.reserve-form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.reserve-form button:hover {
+    background-color: #45a049;
+}
+
+.reserve-form button[type="button"] {
+    background-color: #f44336;
+}
+
+.reserve-form button[type="button"]:hover {
+    background-color: #e41e26;
+}

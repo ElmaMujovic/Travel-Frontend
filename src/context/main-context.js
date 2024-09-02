@@ -5,11 +5,19 @@ export const MainContext = createContext({
     onSetUserHandler: () => { }
 });
 
+// export const useMainContext = () => {
+//     const context = useContext(MainContext);
+
+//     return context;
+// }
+
 export const useMainContext = () => {
     const context = useContext(MainContext);
-
+    if (!context) {
+        throw new Error('useMainContext must be used within a MainContextProvider');
+    }
     return context;
-}
+};
 
 export const MainContextProvider = (props) => {
     const [user, setUser] = useState(null)

@@ -33,6 +33,8 @@ import CustomList from './pages/List'; // Dodaj ovu liniju
 import KreirajDestinciju from './pages/KreirajDestinciju';
 import EditDestination from './pages/EditDestination'; // ili putanja do vašeg EditDestination fajla
 import CreateHotel from './pages/Hotel';
+//  import { MainContextProvider } from './contexts/main-context';
+
 /* eslint-disable */
 
 function App() {
