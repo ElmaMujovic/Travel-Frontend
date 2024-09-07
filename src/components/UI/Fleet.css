@@ -173,3 +173,13 @@
     background-color: #0056b3;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
+
+.fleet-page-search
+{
+    margin-top: -235px;
+    width: 400px;
+    z-index: 1;
+    
+    display: flex;
+}

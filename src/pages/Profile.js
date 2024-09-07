@@ -47,30 +47,43 @@ const Profile = () => {
         });
     };
 
-  // Fetch favorite cars and reservations
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            if (user !== null) {
-                // Fetch favorite cars
-                const favCarsResponse = await axios.get(`https://localhost:7016/KorisnikDestinacija/user/destinacije/${user.user.id}`);
-                setFavCars(favCarsResponse.data);
-
-                // Fetch reservations
-                const rezervacijeResponse = await axios.get(`https://localhost:7016/api/Rezervacija/ByUser/${user.user.id}`);
-                setRezervacije(rezervacijeResponse.data);
-
-                // Fetch reserved destinations
-                const reservedDestinationsResponse = await axios.get(`https://localhost:7016/api/RezervacijaDestinacije/ByUser/${user.user.id}`);
-                setReservedDestinations(reservedDestinationsResponse.data);
+    useEffect(() => {
+        const fetchFavCars = async () => {
+            try {
+                if (user !== null) {
+                    // Fetch favorite cars independently
+                    const favCarsResponse = await axios.get(`https://localhost:7016/KorisnikDestinacija/user/destinacije/${user.user.id}`);
+                    setFavCars(favCarsResponse.data);
+                }
+            } catch (e) {
+                console.log(e);
             }
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    fetchData();
-}, [user]);
+        };
+    
+        const fetchOtherData = async () => {
+            try {
+                if (user !== null) {
+                    // Fetch reservations
+                    const rezervacijeResponse = await axios.get(`https://localhost:7016/api/Rezervacija/ByUser/${user.user.id}`);
+                    setRezervacije(rezervacijeResponse.data);
+    
+                    // Fetch reserved destinations
+                    const reservedDestinationsResponse = await axios.get(`https://localhost:7016/api/RezervacijaDestinacije/ByUser/${user.user.id}`);
+                    setReservedDestinations(reservedDestinationsResponse.data);
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        };
+    
+        // Fetch favorite cars first
+        fetchFavCars().then(() => {
+            // After fetching favorite cars, fetch other data
+            fetchOtherData();
+        });
+    
+    }, [user]);
+    
 
     return (
         <div className="profile-page">
@@ -121,14 +134,14 @@ const Profile = () => {
                     rezervacije.map((rezervacija) => (
                         <div className="reservation-card" key={rezervacija.id}>
                             <div className="destination-image-wrapper">
-                            {/* <Link to={'/destinacija-detalji/'+ rezervacija.list.id} className="edity-profile-link"> */}
+                            <Link to={'/destinacija-detalji/'+ rezervacija.list.destinacijaPaketaId} className="edity-profile-link">
 
                                 <img
                                     src={rezervacija.list.slika.startsWith('/images/') ? `https://localhost:7016${rezervacija.list.slika}` : `https://localhost:7016/images/${rezervacija.list.slika}`}
                                     alt={rezervacija.list.naziv}
                                     className="destination-image"
                                 />
-                                {/* </Link> */}
+                                </Link>
                                 <div className="price-info">
                                     <div className="pricee">{rezervacija.list.novaCena} €</div>
                                 </div>
@@ -164,8 +177,12 @@ const Profile = () => {
                             
                 </Link>
                             <div className="reserved-destination-details">
-                                <h2>{destination.naziv}</h2>
-                                <p><strong>Datum rezervacije:</strong> {new Date(destination.datumRezervacije).toLocaleDateString()}</p>
+                                <h2>{destination.destinacija.naziv}</h2>
+                                <h2>{destination.destinacija.cena } €</h2>
+
+                                <p><strong>Datum rezervacije:</strong> {new Date(destination.datumPolaska).toLocaleDateString()}</p>
+
+                                {/* <p><strong>Datum rezervacije:</strong> {new Date(destination.datumRezervacije).toLocaleDateString()}</p> */}
                                 <p><strong>Broj osoba:</strong> {destination.brojOsoba}</p>
                                 <p><strong>Napomena:</strong> {destination.napomena}</p>
                             </div>

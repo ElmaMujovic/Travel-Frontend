@@ -82,7 +82,7 @@ const Fleet = () => {
                         </div>
                     </div>
                 </div>
-                <input
+                <input 
                     type="text"
                     placeholder="Search..."
                     onChange={e => setSearchDestinations(e.target.value)}

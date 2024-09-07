@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../components/UI/editdestinations.css'
 
 const EditDestination = () => {
     const { id } = useParams(); // Uzimanje ID-a iz URL-a
@@ -32,10 +33,10 @@ const EditDestination = () => {
     };
 
     return (
-        <div>
+        <div className="edit-destination">
             <h2>Uredi Destinaciju</h2>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-group">
                     <label htmlFor="naziv">Naziv</label>
                     <input
                         type="text"
@@ -44,7 +45,7 @@ const EditDestination = () => {
                         onChange={(e) => setDestination({ ...destination, naziv: e.target.value })}
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label htmlFor="image">Slika</label>
                     <input
                         type="file"
@@ -52,7 +53,7 @@ const EditDestination = () => {
                         onChange={(e) => setImage(e.target.files[0])}
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label htmlFor="cena">Cena</label>
                     <input
                         type="number"
@@ -61,10 +62,11 @@ const EditDestination = () => {
                         onChange={(e) => setDestination({ ...destination, cena: e.target.value })}
                     />
                 </div>
-                <button type="submit">Sačuvaj</button>
+                <div className="form-group">
+                    <button type="submit">Sačuvaj</button>
+                </div>
             </form>
         </div>
     );
 };
-
 export default EditDestination;

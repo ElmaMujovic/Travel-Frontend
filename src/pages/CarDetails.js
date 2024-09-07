@@ -6,7 +6,7 @@ import CommentCard from "../components/UI/CommentCard";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import '../components/UI/DestinationDetails.css'
+import '../components/UI/DestinationDetails.css';
 
 const CarDetails = () => {
     const { id } = useParams();
@@ -20,13 +20,12 @@ const CarDetails = () => {
     const [discount, setDiscount] = useState({});
     const [isFavourite, setIsFavourite] = useState(false);
 
-    const [showReserveForm, setShowReserveForm] = useState(false); // New state for showing the reserve form
+    const [showReserveForm, setShowReserveForm] = useState(false); // Novo stanje za prikazivanje forme za rezervaciju
     const [reservationData, setReservationData] = useState({
         departureDate: '',
         arrivalDate: '',
         numberOfPeople: 1,
-        note: '' // Add note field
-
+        note: '' // Polje za napomenu
     });
 
     const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
@@ -35,11 +34,11 @@ const CarDetails = () => {
         const fetchData = async () => {
             try {
                 // Fetch destination data
-                const destResponse = await axios.get(`https://localhost:7016/api/Destinacija/${id}`);
+                const destResponse = await axios.get(`http://elmicaanovouser-001-site1.etempurl.com/api/Destinacija/${id}`);
                 setDestination(destResponse.data);
                 
                 // Fetch comments data
-                const commentsResponse = await axios.get(`https://localhost:7016/api/Komentar/comments/${id}`);
+                const commentsResponse = await axios.get(`http://elmicaanovouser-001-site1.etempurl.com/api/Komentar/comments/${id}`);
                 setComment(commentsResponse.data);
                 
                 // Fetch favorites
@@ -54,7 +53,7 @@ const CarDetails = () => {
 
     const fetchFavouritesCar = async () => {
         try {
-            const res = await axios.get('https://localhost:7016/KorisnikDestinacija');
+            const res = await axios.get('http://elmicaanovouser-001-site1.etempurl.com/KorisnikDestinacija');
             setFavorites(res.data);
             const adIndex = res.data.find(x => x.destinacijaId == id && x.korisnikId == userFromLocalStorage.user.id);
             if (adIndex) {
@@ -79,7 +78,7 @@ const CarDetails = () => {
 
     const removeAdFromFavourites = async () => {
         try {
-            await axios.delete(`https://localhost:7016/KorisnikDestinacija/api/${id}`);
+            await axios.delete(`http://elmicaanovouser-001-site1.etempurl.com/KorisnikDestinacija/api/${id}`);
             setFavsAd(false);
             await fetchFavouritesCar();
         } catch (e) {
@@ -89,7 +88,7 @@ const CarDetails = () => {
 
     const addAdToFavourites = async () => {
         try {
-            await axios.post('https://localhost:7016/KorisnikDestinacija/api', {
+            await axios.post('http://elmicaanovouser-001-site1.etempurl.com/KorisnikDestinacija/api', {
                 korisnikId: user.user.id,
                 destinacijaId: id
             });
@@ -101,7 +100,7 @@ const CarDetails = () => {
 
     const getComments = async () => {
         try {
-            const response = await axios.get(`https://localhost:7016/api/Komentar/comments/${id}`);
+            const response = await axios.get(`http://elmicaanovouser-001-site1.etempurl.com/api/Komentar/comments/${id}`);
             setComment(response.data);
         } catch (e) {
             console.log(e);
@@ -111,7 +110,7 @@ const CarDetails = () => {
     const handleSubmitComment = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("https://localhost:7016/api/Komentar", {
+            await axios.post("http://elmicaanovouser-001-site1.etempurl.com/api/Komentar", {
                 DestinacijaId: id,
                 KorisnikId: user.user.id,
                 Tekst: text,
@@ -125,23 +124,23 @@ const CarDetails = () => {
     };
 
     const handleReserve = () => {
-        setShowReserveForm(true); // Show the reserve form when clicked
+        setShowReserveForm(!showReserveForm); // Toggle forme za rezervaciju
     };
 
     const handleReservationSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('https://localhost:7016/api/RezervacijaDestinacije', {
+            await axios.post('http://elmicaanovouser-001-site1.etempurl.com/api/RezervacijaDestinacije', {
                 DatumPolaska: reservationData.departureDate,
                 DatumDolaska: reservationData.arrivalDate,
                 BrojOsoba: reservationData.numberOfPeople,
-                Napomena: reservationData.note, // Include note field in request
+                Napomena: reservationData.note, // Uključivanje polja napomene u zahtev
 
                 KorisnikId: user.user.id,
                 DestinacijaId: id
             });
-            alert(" Rezervacija je uspešno obavljena");
-            setShowReserveForm(false); // Hide the form after successful reservation
+            alert("Rezervacija je uspešno obavljena");
+            setShowReserveForm(false); // Sakrij formu nakon uspešne rezervacije
         } catch (e) {
             console.log(e);
         }
@@ -150,26 +149,23 @@ const CarDetails = () => {
     const handleDelete = async (e) => {
         e.preventDefault();
         confirmAlert({
-            title: 'Delete destination',
-            message: 'Are you sure to do this?',
+            title: 'Obriši destinaciju',
+            message: 'Da li ste sigurni da želite ovo?',
             buttons: [
                 {
-                    label: 'Yes',
+                    label: 'Da',
                     onClick: async () => {
-                        await axios.delete(`https://localhost:7016/api/Destinacija/${id}`);
+                        await axios.delete(`http://elmicaanovouser-001-site1.etempurl.com/api/Destinacija/${id}`);
                         navigate('/');
                     }
                 },
                 {
-                    label: 'No',
-                    onClick: () => console.log("Canceled")
+                    label: 'Ne',
+                    onClick: () => console.log("Otkazano")
                 }
             ]
         });
     };
-
-
-    
 
     const handleDepartureDateChange = (e) => {
         const newDepartureDate = e.target.value;
@@ -194,16 +190,75 @@ const CarDetails = () => {
             {destination && (
                 <div>
                     <div className="nameCar"><p>{destination.naziv}</p></div>
-                    <div className="prikaz">
-                        {destination.imagePath && <img src={`https://localhost:7016/images/${destination.imagePath}`} style={{ marginLeft: "5rem" }} alt="" />}
-                        <div className="car-details">
-                            <div className="form-reserve">
-                                <h1>Destination Features</h1>
-                                {user && <button className="car-details btn" onClick={handleReserve}>Reserve</button>}
-                                {user && user.role === 'Admin' && <button className="car-details btn" onClick={() => navigate(`/update-car/${id}`)}>Edit</button>}
-                                {user && user.role === 'Admin' && <button className="car-details btn" onClick={handleDelete}>Delete</button>}
-                            </div>
+                    <div className="prikazi">
+                        {destination.imagePath && <img src={`http://elmicaanovouser-001-site1.etempurl.com/images/${destination.imagePath}`} style={{ marginLeft: "5rem" }} alt=""  className="slika"/>}
                         </div>
+
+
+                        {/* <div className="car-details"> */}
+                            <div className="form-reserve">
+                                {user && (
+                                    <div className="reserve-section">
+                                        <button className="dugme66" onClick={handleReserve}>Rezerviši</button>
+                                        {showReserveForm && (
+                                            <div className="reserve-form-custom">
+                                                <h2>Rezervišite Vaš Boravak</h2>
+                                                <form onSubmit={handleReservationSubmit}>
+                                                    <label  className="inputi" >
+                                                        Datum Polaska:
+                                                        <input  
+                                                            type="date" 
+                                                            value={reservationData.departureDate} 
+                                                            onChange={handleDepartureDateChange} 
+                                                            required 
+                                                        />
+                                                    </label>
+                                                    <br />
+                                                    <label className="inputi" >
+                                                        Datum Dolaska:
+                                                        <input  
+                                                            type="date" 
+                                                            value={reservationData.arrivalDate} 
+                                                            onChange={handleArrivalDateChange} 
+                                                            min={reservationData.departureDate} // Minimalni datum je datum polaska
+                                                            required 
+                                                        />
+                                                    </label>
+                                                    <br />
+                                                    <label>
+                                                        Broj Osoba:
+                                                        <input  className="inputi"
+                                                            type="number" 
+                                                            value={reservationData.numberOfPeople} 
+                                                            onChange={(e) => setReservationData({ ...reservationData, numberOfPeople: e.target.value })} 
+                                                            min="1" 
+                                                            required 
+                                                        />
+                                                    </label>
+                                                    <br />
+                                                    <label>
+                                                        Napomena:
+                                                        <textarea 
+                                                            value={reservationData.note} 
+                                                            onChange={(e) => setReservationData({ ...reservationData, note: e.target.value })} 
+                                                        />
+                                                    </label>
+                                                    <br />
+                                                    <button type="submit" className="reserve-submit">Potvrdi rezervaciju</button>
+                                                    <button type="button" className="reserve-cancel" onClick={() => setShowReserveForm(false)}>Otkaži</button>
+                                                </form>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                                {user && user.role === 'Admin' && (
+                                    <>
+                                        <button className="car-details btn" onClick={() => navigate(`/update-car/${id}`)}>Edit</button>
+                                        <button className="car-details btn" onClick={handleDelete}>Delete</button>
+                                    </>
+                                )}
+                            
+                        {/* </div> */}
                     </div>
                     <div style={{ width: "80%", height: "2px", margin: "auto", backgroundColor: "rgb(199, 209, 245)" }}></div>
                     <div className="feature">
@@ -216,69 +271,27 @@ const CarDetails = () => {
                             <h2>Komentari</h2> <br />
                             <div className="add-comment com">
                                 {Array.isArray(comment) ? (
-                                    comment.map((com, id) => (
-                                        <div className="add-comment del" key={id}>
+                                    comment.map((com, index) => (
+                                        <div className="add-comment del" key={index}>
                                             <CommentCard time={com.datum} name={com.korisnikIme} surname={com.koristnikPrezime} text={com.tekst} key={com.id} />
                                         </div>
                                     ))
                                 ) : (
-                                    <p>No comments to display.</p>
+                                    <p>Nema komentara!</p>
                                 )}
                             </div>
                             <h2>Dodaj komentar</h2>
-                            <textarea className="comment" cols="40" rows="5" onChange={(e) => setText(e.target.value)} value={text}></textarea><br />
+                            <textarea 
+                                className="comment" 
+                                cols="40" 
+                                rows="5" 
+                                onChange={(e) => setText(e.target.value)} 
+                                value={text}
+                                placeholder="Unesite vaš komentar ovde..."
+                            ></textarea><br />
                             <button className="add-comm" onClick={handleSubmitComment}>Submit</button>
                         </div>
                     </div>
-                    {showReserveForm && (
-                <div className="reserve-form">
-                    <h2>Rezervišite Vaš Boravak</h2>
-                    <form onSubmit={handleReservationSubmit}>
-                        <label>
-                            Datum Polaska:
-                            <input 
-                                type="date" 
-                                value={reservationData.departureDate} 
-                                onChange={handleDepartureDateChange} 
-                                required 
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Datum Dolaska:
-                            <input 
-                                type="date" 
-                                value={reservationData.arrivalDate} 
-                                onChange={handleArrivalDateChange} 
-                                min={reservationData.departureDate} // Minimum date is departure date
-                                required 
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Broj Osoba:
-                            <input 
-                                type="number" 
-                                value={reservationData.numberOfPeople} 
-                                onChange={(e) => setReservationData({ ...reservationData, numberOfPeople: e.target.value })} 
-                                min="1" 
-                                required 
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Napomena:
-                            <textarea 
-                                value={reservationData.note} 
-                                onChange={(e) => setReservationData({ ...reservationData, note: e.target.value })} 
-                            />
-                        </label>
-                        <br />
-                        <button type="submit">Potvrdi Rezervaciju</button>
-                        <button type="button" onClick={() => setShowReserveForm(false)}>Otkaži</button>
-                    </form>
-                        </div>
-                    )}
                 </div>
             )}
         </div>

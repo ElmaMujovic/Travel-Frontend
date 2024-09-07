@@ -21,8 +21,12 @@ const Navigation = () => {
     return (
         <div className='navigation'>
             <ul className='nav-links'>
-                <Link to='/'>Početna</Link>
-                {user && user.role === 'User' ? <Link to="/about">O nama</Link> : ""}
+            {user && (user.role === 'User' || user.role === 'Moderator' || user.role === "Admin") ? <Link to="/">Pocetna</Link> : ""}
+
+                <Link to='/about'>O nama</Link>
+
+
+                {/* {user && user.role === 'User' ? <Link to="/about">O nama</Link> : ""} */}
                 {!user && <Link to='/login'>Login</Link>}
                 {user && (user.role === 'User' || user.role === 'Moderator') ? <Link to="/fleet">Destinacije</Link> : ""}
                 {user && user.role === 'Moderator' ? <Link to="/create-destination">Kreiraj destinaciju</Link> : ""}

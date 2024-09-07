@@ -15,7 +15,7 @@ const About = () => {
 
   useEffect(() => {
     const getInfo = async () => {
-      await axios.get('http://edinak1-001-site1.ftempurl.com/api/Info')
+      await axios.get('http://elmicaanovouser-001-site1.etempurl.com/api/Info')
         .then(res => setInfo(res.data));
     };
     getInfo();

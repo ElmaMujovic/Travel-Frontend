@@ -228,7 +228,7 @@ const Register = () => {
                     <label>Role</label>
                     <select onChange={handleRoleChange} value={role}>
                         <option value="user">Korisnik</option>
-                        <option value="admin">Admin</option>
+                        {/* <option value="admin">Admin</option> */}
                         <option value="moderator">Moderator</option>
                     </select>
                 </div>
